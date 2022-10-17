@@ -16,3 +16,5 @@ router.post("/add", authFunction, async (req, res) => {
     return errorController(new BadRequestError(), req, res);
   }
 });
+
+module.exports = router;

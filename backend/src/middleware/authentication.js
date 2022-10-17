@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
+const errorController = require("../controller/errorController");
 const userModel = require("../model/User");
 const { AuthenticationError } = require("../util/error");
-const errorHandler = require("./errorHandler");
 const authFunction = async (req, res, next) => {
   try {
     const token = req.header("Authorization").replace("Bearer ", "");
@@ -19,7 +19,7 @@ const authFunction = async (req, res, next) => {
     req.token = token;
     next();
   } catch (e) {
-    errorHandler(new AuthenticationError(), req, res);
+    errorController(new AuthenticationError(), req, res);
   }
 };
 
