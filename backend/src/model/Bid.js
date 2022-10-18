@@ -15,6 +15,10 @@ const bid_schema = new mongoose.Schema(
       type: Boolean,
       required: true,
     },
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
   },
   {
     timestamps: true,
