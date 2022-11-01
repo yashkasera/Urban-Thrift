@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const { NotFoundError, AuthenticationError } = require("../util/error");
 
 const user_schema = new mongoose.Schema(
   {
@@ -35,10 +36,6 @@ const user_schema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // is_verified: {
-    //   type: Boolean,
-    //   required: true,
-    // },
   },
   { timestamps: true }
 );
@@ -65,11 +62,11 @@ user_schema.statics.findByCredentials = async (email, password) => {
   const user = await userModel.findOne({ email });
 
   if (!user) {
-    throw new Error("Unable to login");
+    throw new NotFoundError();
   }
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    throw new Error("Unable to login");
+    throw new AuthenticationError();
   }
   return user;
 };
@@ -79,7 +76,6 @@ user_schema.pre("save", async function (next) {
   if (user.isModified("password")) {
     user.password = await bcrypt.hash(user.password, 8);
   }
-
   next();
 });
 

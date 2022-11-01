@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
+
 const size_enum = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"];
+const gender_enum = ["M", "F", "U"];
+const category_enum = ["Upper", "Lower", "Footwear", "Accessories"];
+
 const product_schema = new mongoose.Schema(
   {
     name: {
@@ -23,7 +27,16 @@ const product_schema = new mongoose.Schema(
       enum: size_enum,
       required: true,
     },
-    // category:{},
+    gender: {
+      type: String,
+      enum: gender_enum,
+      required: true,
+    },
+    category: {
+      type: String,
+      enum: category_enum,
+      required: true,
+    },
     added_by: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
