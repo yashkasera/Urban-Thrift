@@ -11,6 +11,7 @@ mongoose
         await model.init();
       })
     );
+    // require("../util/addData");
     console.log("Connected to db");
     console.log(process.env.JWT_KEY);
   })

@@ -20,11 +20,15 @@ router.post("/signup", async (req, res) => {
 //route for login
 router.post("/login", async (req, res) => {
   try {
+    console.log("hi");
+    console.log(req.body);
     const { email, password } = req.body;
+    console.log(email, password);
     const user = await user_model.findByCredentials(email, password);
     const token = await user.generateAuthToken();
-    res.status(200).send({ ...user, token });
+    res.status(200).send({ user, token });
   } catch (e) {
+    console.log(e);
     errorController(e, req, res);
   }
 });

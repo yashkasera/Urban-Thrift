@@ -2,21 +2,21 @@ const mongoose = require("mongoose");
 
 const bid_schema = new mongoose.Schema(
   {
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
     product_id: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
     max_amount: Number,
-    amount: {
+    current_amount: {
       type: Number,
       required: true,
     },
-    is_active: {
-      type: Boolean,
-      required: true,
-    },
-    user_id: {
-      type: mongoose.Schema.Types.ObjectId,
+    amount: {
+      type: Number,
       required: true,
     },
   },
@@ -25,7 +25,7 @@ const bid_schema = new mongoose.Schema(
   }
 );
 
-bid_schema.index({ product_id: 1, is_active: 1 });
+bid_schema.index({ product_id: 1, user_id: 1 });
 
 const bid_model = mongoose.model("bid", bid_schema);
 

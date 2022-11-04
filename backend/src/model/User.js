@@ -9,33 +9,44 @@ const user_schema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // alias: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    // },
+    password: {
+      type: String,
+      required: true,
+    },
     phone: {
       type: String,
       required: true,
       unique: true,
     },
-    // email: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    // },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     token: {
       type: String,
       unique: true,
     },
+    address: {
+      addressLineOne: {
+        type: String,
+        required: true,
+      },
+      city: {
+        type: String,
+        required: true,
+      },
+      state: { type: String, required: true },
+      pincode: {
+        type: String,
+        required: true,
+      },
+    },
+
     // balance: {
     //   type: Number,
     //   required: true,
     // },
-    password: {
-      type: String,
-      required: true,
-    },
   },
   { timestamps: true }
 );
@@ -59,7 +70,7 @@ user_schema.methods.generateAuthToken = async function () {
 };
 
 user_schema.statics.findByCredentials = async (email, password) => {
-  const user = await userModel.findOne({ email });
+  const user = await user_model.findOne({ email });
 
   if (!user) {
     throw new NotFoundError();

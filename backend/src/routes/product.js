@@ -11,14 +11,91 @@ const {
 
 const router = express.Router();
 
-router.get("/latest", async (req, res) => {
+const sorter = (a, b) => {
+  return b.watchers - a.watchers;
+};
+
+router.get("/home", async (req, res) => {
   try {
-    const latest = await product_model.find().sort({ _id: -1 }).limit(5);
-    console.log(latest);
-    return res.send(latest);
+    const products = await product_model
+      .find()
+      .sort({ _id: -1 })
+      .populate("added_by");
+    const viewedP = products.sort(sorter);
+
+    const result = {
+      latest: products.slice(0, 8),
+      most_watched: viewedP.slice(0, 8),
+    };
+    // console.log(result);
+    return res.send(result);
   } catch (e) {
     console.log(e);
     errorController(new BadRequestError(), req, res);
+  }
+});
+
+router.get("/filter", async (req, res) => {
+  try {
+    const perPage = 36;
+    const { size, color, category, page } = req.query;
+    if (!page) {
+      throw new Error();
+    }
+    let result = [];
+    if (!size && !color && !category) {
+      result = await product_model
+        .find({ end_time: { $gte: Date.now() } })
+        .populate("added_by");
+    } else {
+      const queryArray = [];
+      if (size) queryArray.push({ size });
+      if (color) queryArray.push({ color });
+      if (category) queryArray.push({ category });
+      // console.log(queryArray);
+      result = await product_model
+        .find({
+          $and: queryArray,
+        })
+        .populate("added_by");
+    }
+    result = result.slice((page - 1) * perPage, page * perPage);
+    return res.send(result);
+  } catch (e) {
+    console.log(e);
+    errorController(e, req, res);
+  }
+});
+
+router.get("/latest", async (req, res) => {
+  try {
+    const result = await product_model
+      .find()
+      .sort({ _id: -1 })
+      .limit(24)
+      .populate("added_by");
+    return res.send(result);
+  } catch (e) {
+    console.log(e);
+    errorController(e, req, res);
+  }
+});
+
+router.get("/:_id", async (req, res) => {
+  try {
+    const { _id } = req.params;
+    if (!_id) throw new Error();
+    const product = await product_model.findById(_id).populate("added_by");
+    if (!product) throw new NotFoundError();
+    const related_products = await product_model
+      .find({ category: product.category })
+      .sort({ _id: -1 })
+      .limit(4)
+      .populate("added_by");
+    return res.status(200).send({ product, related_products });
+  } catch (e) {
+    console.log(e);
+    errorController(e, req, res);
   }
 });
 
@@ -35,25 +112,25 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    if (!id) throw new Error();
-    let product = await product_model.findById(id);
-    if (!product) throw new NotFoundError();
-    else if (product.added_by != req.user._id) throw new ForbiddenError();
-    else {
-      delete req.body._id;
-      product = {
-        ...product,
-        ...req.body,
-      };
-      await product.save();
-      return res.status(200).send(product);
-    }
-  } catch (e) {
-    errorController(e, req, res);
-  }
-});
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     if (!id) throw new Error();
+//     let product = await product_model.findById(id);
+//     if (!product) throw new NotFoundError();
+//     else if (product.added_by != req.user._id) throw new ForbiddenError();
+//     else {
+//       delete req.body._id;
+//       product = {
+//         ...product,
+//         ...req.body,
+//       };
+//       await product.save();
+//       return res.status(200).send(product);
+//     }
+//   } catch (e) {
+//     errorController(e, req, res);
+//   }
+// });
 
 module.exports = router;
