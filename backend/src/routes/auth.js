@@ -5,17 +5,15 @@ const user_model = require("../model/User");
 
 const router = new express.Router();
 
-const { BadRequestError, AuthenticationError } = require("../util/error");
-
 //route for sign up
 router.post("/signup", async (req, res) => {
   try {
     const user = new user_model(req.body);
     const token = await user.generateAuthToken();
-    return res.send(true);
+    return res.send({ ...user, token });
   } catch (e) {
     console.log(e);
-    errorController(new BadRequestError(), req, res);
+    errorController(e, req, res);
   }
 });
 
@@ -27,10 +25,7 @@ router.post("/login", async (req, res) => {
     const token = await user.generateAuthToken();
     res.status(200).send({ ...user, token });
   } catch (e) {
-    if (e.name && e.message && e.code) {
-      errorController(e, req, res);
-    }
-    errorController(new BadRequestError(), req, res);
+    errorController(e, req, res);
   }
 });
 
@@ -42,7 +37,22 @@ router.post("/logout", async (req, res) => {
     await req.user.save();
     res.status(200).send(req.user);
   } catch (e) {
-    errorController(new BadRequestError(), req, res);
+    errorController(e, req, res);
+  }
+});
+
+router.put("/", async (req, res) => {
+  try {
+    delete req.body._id;
+    delete req.body.token;
+    req.user = {
+      ...req.user,
+      ...req.body,
+    };
+    await req.user.save();
+    res.status(200).send(req.user);
+  } catch (e) {
+    errorController(e, req, res);
   }
 });
 
