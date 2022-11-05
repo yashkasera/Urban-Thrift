@@ -3,6 +3,7 @@ const errorController = require("../controller/errorController");
 const authFunction = require("../middleware/authentication");
 
 const product_model = require("../model/Product");
+const user_product_model = require("../model/User_Product");
 const {
   BadRequestError,
   NotFoundError,
@@ -57,7 +58,7 @@ router.get("/filter", async (req, res) => {
         .find({
           $and: queryArray,
         })
-        .populate("added_by");
+        .populate(["added_by", "highest_bid_id"]);
     }
     result = result.slice((page - 1) * perPage, page * perPage);
     return res.send(result);
@@ -81,6 +82,10 @@ router.get("/latest", async (req, res) => {
   }
 });
 
+router.get("/related", async (req, res) => {
+  return res.status(200).send(await product_model.find().limit(4));
+});
+
 router.get("/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
@@ -92,6 +97,11 @@ router.get("/:_id", async (req, res) => {
       .sort({ _id: -1 })
       .limit(4)
       .populate("added_by");
+
+    //?CHECK THIS
+    const user_product = await user_product_model.find({ product_id: _id });
+    product.watchers = user_product.length;
+
     return res.status(200).send({ product, related_products });
   } catch (e) {
     console.log(e);

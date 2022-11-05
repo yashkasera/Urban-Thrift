@@ -49,7 +49,11 @@ const product_schema = new mongoose.Schema(
       },
     ],
     material: String,
-
+    highest_bid_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "bid",
+    },
     added_by: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
@@ -95,5 +99,9 @@ const product_schema = new mongoose.Schema(
 //   });
 // };
 
+product_schema.pre("save", async function () {
+  const product = this;
+  // const bid = await bid_model
+});
 const product_model = mongoose.model("Product", product_schema);
 module.exports = product_model;
