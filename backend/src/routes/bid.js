@@ -10,9 +10,6 @@ const router = new Router();
 const sorter = (a, b) => {
   return b.max_amount - a.max_amount;
 };
-// router.get("/all", async (req, res) => {
-//   return res.send(await bid_model.find());
-// });
 
 router.use(authFunction);
 router.post("/:product_id", async (req, res) => {
@@ -81,21 +78,17 @@ router.post("/:product_id", async (req, res) => {
   }
 });
 
+router.patch("/:id", async (req, res) => {});
+
 router.get("/all", async (req, res) => {
   try {
-    const bids = await bid_model.find({ user_id: req.user._id });
-    const productIds = bids.map((b) => b.product_id);
-    const products = await product_model.find({ _id: { $in: productIds } });
-    const finalData = [];
-    console.log(bids, products);
-    products.forEach((product) => {
-      bids.forEach((bid) => {
-        console.log(bid.product_id.toString() == product._id.toString());
-        if (bid.product_id.toString() == product._id.toString())
-          finalData.push({ bid, product });
-      });
-    });
-    return res.status(200).send(finalData);
+    const bids = await bid_model
+      .find({ user_id: req.user._id })
+      .populate("user_id")
+      .populate("product_id")
+      .sort({ _id: -1 });
+    console.log(bids);
+    return res.status(200).send(bids);
   } catch (e) {
     console.log(e);
     errorController(e, req, res);

@@ -5,10 +5,12 @@ const bid_schema = new mongoose.Schema(
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: "User",
     },
     product_id: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: "Product",
     },
     max_amount: Number,
     current_amount: {
