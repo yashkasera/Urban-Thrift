@@ -99,9 +99,19 @@ const product_schema = new mongoose.Schema(
 //   });
 // };
 
-product_schema.pre("save", async function () {
+const sorter = (a, b) => {
+  return b.current_amount - a.current_amount;
+};
+
+product_schema.pre("save", async function (next) {
   const product = this;
-  // const bid = await bid_model
+
+  const bids = await bid_model.find({ product_id: this._id });
+  if (bids.length > 0) {
+    bids.sort(sorter);
+    product.highest_bid_id = bids[0]._id;
+  }
+  next();
 });
 const product_model = mongoose.model("Product", product_schema);
 module.exports = product_model;

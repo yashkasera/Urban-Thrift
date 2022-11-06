@@ -4,11 +4,7 @@ const authFunction = require("../middleware/authentication");
 
 const product_model = require("../model/Product");
 const user_product_model = require("../model/User_Product");
-const {
-  BadRequestError,
-  NotFoundError,
-  ForbiddenError,
-} = require("../util/error");
+const { BadRequestError, NotFoundError } = require("../util/error");
 
 const router = express.Router();
 
@@ -21,14 +17,14 @@ router.get("/home", async (req, res) => {
     const products = await product_model
       .find()
       .sort({ _id: -1 })
-      .populate("added_by");
+      .populate("added_by")
+      .populate("highest_bid_id");
     const viewedP = products.sort(sorter);
 
     const result = {
       latest: products.slice(0, 8),
       most_watched: viewedP.slice(0, 8),
     };
-    // console.log(result);
     return res.send(result);
   } catch (e) {
     console.log(e);
@@ -47,7 +43,8 @@ router.get("/filter", async (req, res) => {
     if (!size && !color && !category) {
       result = await product_model
         .find({ end_time: { $gte: Date.now() } })
-        .populate("added_by");
+        .populate("added_by")
+        .populate("highest_bid_id");
     } else {
       const queryArray = [];
       if (size) queryArray.push({ size });
@@ -58,7 +55,8 @@ router.get("/filter", async (req, res) => {
         .find({
           $and: queryArray,
         })
-        .populate(["added_by", "highest_bid_id"]);
+        .populate("added_by")
+        .populate("highest_bid_id");
     }
     result = result.slice((page - 1) * perPage, page * perPage);
     return res.send(result);
@@ -74,7 +72,8 @@ router.get("/latest", async (req, res) => {
       .find()
       .sort({ _id: -1 })
       .limit(24)
-      .populate("added_by");
+      .populate("added_by")
+      .populate("highest_bid_id");
     return res.send(result);
   } catch (e) {
     console.log(e);
@@ -83,20 +82,32 @@ router.get("/latest", async (req, res) => {
 });
 
 router.get("/related", async (req, res) => {
-  return res.status(200).send(await product_model.find().limit(4));
+  return res
+    .status(200)
+    .send(
+      await product_model
+        .find()
+        .limit(4)
+        .populate("added_by")
+        .populate("highest_bid_id")
+    );
 });
 
 router.get("/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
     if (!_id) throw new Error();
-    const product = await product_model.findById(_id).populate("added_by");
+    const product = await product_model
+      .findById(_id)
+      .populate("added_by")
+      .populate("highest_bid_id");
     if (!product) throw new NotFoundError();
     const related_products = await product_model
       .find({ category: product.category })
       .sort({ _id: -1 })
       .limit(4)
-      .populate("added_by");
+      .populate("added_by")
+      .populate("highest_bid_id");
 
     //?CHECK THIS
     const user_product = await user_product_model.find({ product_id: _id });
