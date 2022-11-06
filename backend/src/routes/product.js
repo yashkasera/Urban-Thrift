@@ -139,7 +139,7 @@ router.post("/", async (req, res) => {
 router.get("/my/listings", async (req, res) => {
   try {
     const products = await product_model
-      .find({ user_id: req.user._id })
+      .find({ added_by: req.user._id })
       .populate("added_by")
       .populate("highest_bid_id");
     return res.status(200).send(products);

@@ -19,7 +19,7 @@ router.post("/:product_id", async (req, res) => {
     const product = await product_model.findById(product_id);
     if (!product) throw new NotFoundError();
     if (product.added_by.toString() == req.user._id) throw new ForbiddenError();
-    const bids = await bid_model.find().sort({ _id: -1 });
+    const bids = await bid_model.find({ product_id }).sort({ _id: -1 });
     if (!bids || bids.length == 0) {
       const bid = new bid_model({
         ...req.body,
@@ -44,7 +44,6 @@ router.post("/:product_id", async (req, res) => {
       bids.sort(sorter);
       const largest = bids[0];
       const sLargest = bids[1];
-      console.log(sLargest.max_amount, product.increment_amount);
       largest.current_amount =
         sLargest.max_amount + product.increment_amount <= largest.max_amount
           ? sLargest.max_amount + product.increment_amount
