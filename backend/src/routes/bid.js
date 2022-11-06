@@ -78,7 +78,13 @@ router.post("/:product_id", async (req, res) => {
   }
 });
 
-router.patch("/:id", async (req, res) => {});
+router.patch("/:id", async (req, res) => {
+  try {
+  } catch (e) {
+    console.log(e);
+    errorController(e, req, res);
+  }
+});
 
 router.get("/all", async (req, res) => {
   try {

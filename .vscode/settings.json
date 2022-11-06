@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/d92899cd-9dd5-41fb-b265-64e005f92778/AppServices/subscriptions/d92899cd-9dd5-41fb-b265-64e005f92778/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/urbanthrift",
+  "appService.deploySubpath": "backend"
+}

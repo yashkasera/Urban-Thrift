@@ -63,7 +63,7 @@ user_schema.methods.toJSON = function () {
 
 user_schema.methods.generateAuthToken = async function () {
   const user = this;
-  const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_KEY);
+  const token = jwt.sign({ _id: user._id.toString() }, "IWP_PROJECT");
   user.token = token;
   await user.save();
   return token;

@@ -43,15 +43,9 @@ const product_schema = new mongoose.Schema(
         type: String,
       },
     ],
-    keywords: [
-      {
-        type: String,
-      },
-    ],
     material: String,
     highest_bid_id: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
       ref: "bid",
     },
     added_by: {
@@ -65,7 +59,7 @@ const product_schema = new mongoose.Schema(
     },
     increment_amount: {
       type: Number,
-      required: true,
+      default: 100,
     },
     start_time: {
       type: Date,
@@ -83,21 +77,6 @@ const product_schema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-// const sorter = (a, b) => {
-//   return b.current_amount - a.current_amount;
-// };
-// product_schema.methods.toJSON = function () {
-//   const product = this;
-
-//   const productObject = product.toObject();
-
-//   bid_model.find({ product_id: productObject._id }).then((bids) => {
-//     bids.sort(sorter);
-//     productObject.highest_bid = bids[0].current_amount;
-//     console.log(productObject);
-//     return productObject;
-//   });
-// };
 
 const sorter = (a, b) => {
   return b.current_amount - a.current_amount;

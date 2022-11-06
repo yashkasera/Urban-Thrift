@@ -9,12 +9,12 @@ const errorController = require("./controller/errorController");
 const userRouter = require("./routes/auth");
 const productRouter = require("./routes/product");
 const bidRouter = require("./routes/bid");
-
 const app = express();
 app.use(express.json());
 
 const cors = require("cors");
 require("./db");
+
 app.use(cors());
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/product", productRouter);

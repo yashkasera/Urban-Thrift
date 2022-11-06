@@ -5,7 +5,7 @@ const { AuthenticationError } = require("../util/error");
 const authFunction = async (req, res, next) => {
   try {
     const token = req.header("Authorization").replace("Bearer ", "");
-    const decoded = jwt.verify(token, process.env.JWT_KEY);
+    const decoded = jwt.verify(token, "IWP_PROJECT");
     const user = await userModel.findOne({
       _id: decoded._id,
       token,

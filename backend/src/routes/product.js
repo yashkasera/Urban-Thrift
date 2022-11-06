@@ -124,12 +124,27 @@ router.use(authFunction);
 
 router.post("/", async (req, res) => {
   try {
-    const product = new product_model({ ...req.body, added_by: req.user._id });
+    const product = await new product_model({
+      ...req.body,
+      added_by: req.user._id,
+    });
     await product.save();
     return res.send(product);
   } catch (e) {
     console.log(e);
     return errorController(e, req, res);
+  }
+});
+
+router.get("/listings", async (req, res) => {
+  try {
+    const products = await product_model({ user_id: req.user._id })
+      .populate("added_by")
+      .populate("highest_bid_id");
+    return res.status(200).send(products);
+  } catch (e) {
+    console.log(e);
+    errorController(e);
   }
 });
 
