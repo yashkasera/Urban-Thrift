@@ -25,7 +25,6 @@ const user_schema = new mongoose.Schema(
     },
     token: {
       type: String,
-      unique: true,
     },
     address: {
       addressLineOne: {
@@ -42,7 +41,6 @@ const user_schema = new mongoose.Schema(
         required: true,
       },
     },
-
     wallet: {
       type: Number,
       // required: true,

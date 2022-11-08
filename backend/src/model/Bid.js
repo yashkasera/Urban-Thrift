@@ -29,6 +29,10 @@ const bid_schema = new mongoose.Schema(
 
 bid_schema.index({ product_id: 1, user_id: 1 }, { unique: true });
 
+// bid_schema.pre("save", async () => {
+//   const bid = this;
+// });
+
 const bid_model = mongoose.model("bid", bid_schema);
 
 module.exports = bid_model;

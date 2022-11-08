@@ -10,7 +10,7 @@ router.post("/signup", async (req, res) => {
   try {
     const user = new user_model(req.body);
     const token = await user.generateAuthToken();
-    return res.send({ ...user, token });
+    return res.status(201).send({ user, token });
   } catch (e) {
     console.log(e);
     errorController(e, req, res);
@@ -20,8 +20,6 @@ router.post("/signup", async (req, res) => {
 //route for login
 router.post("/login", async (req, res) => {
   try {
-    console.log("hi");
-    console.log(req.body);
     const { email, password } = req.body;
     console.log(email, password);
     const user = await user_model.findByCredentials(email, password);
@@ -45,17 +43,14 @@ router.post("/logout", async (req, res) => {
   }
 });
 
-router.put("/", async (req, res) => {
+router.patch("/", async (req, res) => {
   try {
-    delete req.body._id;
-    delete req.body.token;
-    req.user = {
-      ...req.user,
-      ...req.body,
-    };
+    req.user.wallet =
+      Number(req.user.wallet ? req.user.wallet : 0) + Number(req.body.wallet);
     await req.user.save();
     res.status(200).send(req.user);
   } catch (e) {
+    console.log(e);
     errorController(e, req, res);
   }
 });

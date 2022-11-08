@@ -154,25 +154,4 @@ router.get("/my/listings", async (req, res) => {
   }
 });
 
-// router.put("/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     if (!id) throw new Error();
-//     let product = await product_model.findById(id);
-//     if (!product) throw new NotFoundError();
-//     else if (product.added_by != req.user._id) throw new ForbiddenError();
-//     else {
-//       delete req.body._id;
-//       product = {
-//         ...product,
-//         ...req.body,
-//       };
-//       await product.save();
-//       return res.status(200).send(product);
-//     }
-//   } catch (e) {
-//     errorController(e, req, res);
-//   }
-// });
-
 module.exports = router;

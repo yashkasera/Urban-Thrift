@@ -11,7 +11,14 @@ router.get("/", async (req, res) => {
     const orders = await await order_model
       .find({ user_id: req.user._id })
       .populate("user_id")
-      .populate("product_id");
+      .populate({
+        path: "product_id",
+        populate: [
+          {
+            path: "highest_bid_id",
+          },
+        ],
+      });
     return res.status(200).send(orders);
   } catch (e) {
     console.log(e);

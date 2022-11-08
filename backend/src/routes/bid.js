@@ -51,16 +51,12 @@ router.post("/:product_id", async (req, res) => {
           ? sLargest.max_amount + product.increment_amount
           : largest.max_amount;
       await largest.save();
-      const mail_id_user_ids = [];
       bids.map(async (b) => {
         if (b._id != largest._id) {
           b.current_amount = b.max_amount;
           await b.save();
-          mail_id_user_ids.push(b.user_id);
         }
       });
-      const users = await user_model.find({ _id: { $in: mail_id_user_ids } });
-      const mailIds = users.map((u) => u.email);
       product["highest_bid_id"] = largest._id;
       await product.save();
       if (largest.user_id != req.user._id) {
@@ -81,8 +77,47 @@ router.post("/:product_id", async (req, res) => {
   }
 });
 
-router.patch("/:id", async (req, res) => {
+router.patch("/:product_id", async (req, res) => {
   try {
+    const { product_id } = req.params;
+    const bid = await bid_model.findOne({
+      user_id: req.user._id,
+      product_id,
+    });
+    const product = await product_model.findById(product_id);
+    if (!bid) throw new NotFoundError();
+    if (!req.body.max_amount) throw new Error();
+    bid.max_amount = req.body.max_amount;
+    await bid.save();
+    const bids = await bid_model.find({ _id: { $ne: bid._id } });
+    bids.push(bid);
+    bids.sort(sorter);
+    const largest = bids[0];
+    const sLargest = bids[1];
+    largest.current_amount =
+      sLargest.max_amount + product.increment_amount <= largest.max_amount
+        ? sLargest.max_amount + product.increment_amount
+        : largest.max_amount;
+    await largest.save();
+    bids.map(async (b) => {
+      if (b._id != largest._id) {
+        b.current_amount = b.max_amount;
+        await b.save();
+      }
+    });
+    product["highest_bid_id"] = largest._id;
+    await product.save();
+    if (largest.user_id != req.user._id) {
+      return res.status(201).send({
+        message: "Bid created but not highest!",
+        largest: largest.current_amount,
+      });
+    } else {
+      return res.status(201).send({
+        message: "Bid created!",
+        bid: largest,
+      });
+    }
   } catch (e) {
     console.log(e);
     errorController(e, req, res);
@@ -94,9 +129,20 @@ router.get("/all", async (req, res) => {
     const bids = await bid_model
       .find({ user_id: req.user._id })
       .populate("user_id")
-      .populate("product_id")
+      .populate({
+        path: "product_id",
+        populate: [
+          {
+            path: "highest_bid_id",
+          },
+        ],
+      })
+      // .populate({
+      //   path: "product_id.highest_bid_id",
+      //   // ref: "bid",
+      // })
       .sort({ _id: -1 });
-    console.log(bids);
+    console.log(bids[0]);
     return res.status(200).send(bids);
   } catch (e) {
     console.log(e);

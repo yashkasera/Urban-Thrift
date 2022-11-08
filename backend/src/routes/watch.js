@@ -3,6 +3,7 @@ const errorController = require("../controller/errorController");
 const authFunction = require("../middleware/authentication");
 const product_model = require("../model/Product");
 const user_product_model = require("../model/User_Product");
+const { NotFoundError } = require("../util/error");
 const router = new Router();
 
 router.use(authFunction);
@@ -49,7 +50,15 @@ router.get("/", async (req, res) => {
 
 router.post("/delete/:product_id", async (req, res) => {
   try {
-    const watcher = await user_product_model.findOne({ user_id });
+    const { product_id } = req.params;
+    const { _id } = req.user;
+    const watcher = await user_product_model.findOne({
+      user_id: _id,
+      product_id,
+    });
+    if (!watcher) throw new NotFoundError();
+    await watcher.remove();
+    return res.status(200).send(watcher);
   } catch (e) {
     console.log(e);
     errorController(e, req, res);
