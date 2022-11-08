@@ -5,7 +5,7 @@ const authFunction = require("../middleware/authentication");
 const product_model = require("../model/Product");
 const user_product_model = require("../model/User_Product");
 const { BadRequestError, NotFoundError } = require("../util/error");
-
+const agenda = require("./agenda");
 const router = express.Router();
 
 const sorter = (a, b) => {
@@ -19,12 +19,14 @@ router.get("/home", async (req, res) => {
       .sort({ _id: -1 })
       .populate("added_by")
       .populate("highest_bid_id");
+
     const viewedP = products.sort(sorter);
 
     const result = {
       latest: products.slice(0, 8),
       most_watched: viewedP.slice(0, 8),
     };
+    // console.log(result.most_watched);
     return res.send(result);
   } catch (e) {
     console.log(e);
@@ -42,9 +44,10 @@ router.get("/filter", async (req, res) => {
     let result = [];
     if (!size && !color && !category) {
       result = await product_model
-        .find({ end_time: { $gte: Date.now() } })
+        .find() //({ end_time: { $gte: Date.now() } })
         .populate("added_by")
         .populate("highest_bid_id");
+      console.log(result);
     } else {
       const queryArray = [];
       if (size) queryArray.push({ size });
@@ -58,6 +61,7 @@ router.get("/filter", async (req, res) => {
         .populate("added_by")
         .populate("highest_bid_id");
     }
+    console.log(result);
     result = result.slice((page - 1) * perPage, page * perPage);
     return res.send(result);
   } catch (e) {
@@ -129,7 +133,8 @@ router.post("/", async (req, res) => {
       added_by: req.user._id,
     });
     await product.save();
-    return res.send(product);
+    agenda.schedule("in 1 minute", "prod", { id: product._id });
+    return res.status(201).send(product);
   } catch (e) {
     console.log(e);
     return errorController(e, req, res);

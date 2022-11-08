@@ -9,9 +9,8 @@ const authFunction = async (req, res, next) => {
     console.log(token, decoded);
     const user = await userModel.findOne({
       _id: decoded._id,
-      token,
     });
-
+    // console.log(user);
     if (!user) {
       throw new AuthenticationError();
     }

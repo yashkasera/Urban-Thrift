@@ -27,7 +27,7 @@ const bid_schema = new mongoose.Schema(
   }
 );
 
-bid_schema.index({ product_id: 1, user_id: 1 });
+bid_schema.index({ product_id: 1, user_id: 1 }, { unique: true });
 
 const bid_model = mongoose.model("bid", bid_schema);
 

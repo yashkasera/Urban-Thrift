@@ -43,10 +43,10 @@ const user_schema = new mongoose.Schema(
       },
     },
 
-    // balance: {
-    //   type: Number,
-    //   required: true,
-    // },
+    wallet: {
+      type: Number,
+      // required: true,
+    },
   },
   { timestamps: true }
 );

@@ -9,6 +9,8 @@ const errorController = require("./controller/errorController");
 const userRouter = require("./routes/auth");
 const productRouter = require("./routes/product");
 const bidRouter = require("./routes/bid");
+const watchRouter = require("./routes/watch");
+const orderRouter = require("./routes/order");
 const app = express();
 app.use(express.json());
 
@@ -19,6 +21,8 @@ app.use(cors());
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/bid", bidRouter);
+app.use("/api/v1/watch", watchRouter);
+app.use("/api/v1/order", orderRouter);
 
 app.all("*", (req, res) => {
   errorController(new NotFoundError(), req, res);

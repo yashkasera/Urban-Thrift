@@ -28,6 +28,8 @@ router.post("/:product_id", async (req, res) => {
         amount: product.min_bid,
         current_amount: product.min_bid,
       });
+      product["highest_bid_id"] = bid._id;
+      await product.save();
       await bid.save();
       return res.status(201).send(bid);
     } else {
@@ -59,6 +61,8 @@ router.post("/:product_id", async (req, res) => {
       });
       const users = await user_model.find({ _id: { $in: mail_id_user_ids } });
       const mailIds = users.map((u) => u.email);
+      product["highest_bid_id"] = largest._id;
+      await product.save();
       if (largest.user_id != req.user._id) {
         return res.status(201).send({
           message: "Bid created but not highest!",

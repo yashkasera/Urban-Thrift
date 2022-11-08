@@ -5,15 +5,16 @@ const order_schema = new mongoose.Schema(
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: "User",
     },
     product_id: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: "Product",
     },
     status: {
       type: String,
-      enum: order_enum,
-      required: true,
+      default: "placed",
     },
   },
   {

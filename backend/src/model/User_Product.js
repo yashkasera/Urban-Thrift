@@ -16,7 +16,7 @@ const user_product_schema = new mongoose.Schema(
   }
 );
 
-user_product_schema.index({ user_id: 1, product_id: 1 });
+user_product_schema.index({ user_id: 1, product_id: 1 }, { unique: true });
 
 const user_product_model = new mongoose.model(
   "User_Product",
