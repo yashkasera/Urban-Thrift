@@ -8,7 +8,7 @@ router.use(authFunction);
 
 router.get("/", async (req, res) => {
   try {
-    const orders = await await order_model
+    const orders = await order_model
       .find({ user_id: req.user._id })
       .populate("user_id")
       .populate({
@@ -18,7 +18,8 @@ router.get("/", async (req, res) => {
             path: "highest_bid_id",
           },
         ],
-      });
+      })
+      .sort({ _id: -1 });
     return res.status(200).send(orders);
   } catch (e) {
     console.log(e);

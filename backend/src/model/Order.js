@@ -11,6 +11,7 @@ const order_schema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Product",
+      unique: true,
     },
     status: {
       type: String,

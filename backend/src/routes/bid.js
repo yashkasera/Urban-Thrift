@@ -3,7 +3,6 @@ const errorController = require("../controller/errorController");
 const authFunction = require("../middleware/authentication");
 const bid_model = require("../model/Bid");
 const product_model = require("../model/Product");
-const user_model = require("../model/User");
 const { NotFoundError, ForbiddenError } = require("../util/error");
 const router = new Router();
 
@@ -127,7 +126,7 @@ router.patch("/:product_id", async (req, res) => {
 router.get("/all", async (req, res) => {
   try {
     const bids = await bid_model
-      .find({ user_id: req.user._id })
+      .find({ user_id: req.user._id }) // end_time:{$gt:new Date(Date.now())}
       .populate("user_id")
       .populate({
         path: "product_id",
@@ -137,12 +136,7 @@ router.get("/all", async (req, res) => {
           },
         ],
       })
-      // .populate({
-      //   path: "product_id.highest_bid_id",
-      //   // ref: "bid",
-      // })
       .sort({ _id: -1 });
-    console.log(bids[0]);
     return res.status(200).send(bids);
   } catch (e) {
     console.log(e);

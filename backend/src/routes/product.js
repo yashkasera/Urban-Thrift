@@ -37,31 +37,31 @@ router.get("/home", async (req, res) => {
 router.get("/filter", async (req, res) => {
   try {
     const perPage = 36;
-    const { size, color, category, page } = req.query;
+    const { size, color, category, page, brand } = req.query;
     if (!page) {
       throw new Error();
     }
     let result = [];
-    if (!size && !color && !category) {
+    if (!size && !color && !category && !brand) {
       result = await product_model
-        .find() //({ end_time: { $gte: Date.now() } })
+        .find()
         .populate("added_by")
         .populate("highest_bid_id");
-      console.log(result);
     } else {
       const queryArray = [];
       if (size) queryArray.push({ size });
       if (color) queryArray.push({ color });
       if (category) queryArray.push({ category });
+      if (brand) queryArray.push({ brand });
       // console.log(queryArray);
       result = await product_model
         .find({
           $and: queryArray,
         })
         .populate("added_by")
-        .populate("highest_bid_id");
+        .populate("highest_bid_id")
+        .sort({ _id: -1 });
     }
-    console.log(result);
     result = result.slice((page - 1) * perPage, page * perPage);
     return res.send(result);
   } catch (e) {
@@ -94,6 +94,7 @@ router.get("/related", async (req, res) => {
         .limit(4)
         .populate("added_by")
         .populate("highest_bid_id")
+        .sort({ _id: -1 })
     );
 });
 
@@ -133,7 +134,6 @@ router.post("/", async (req, res) => {
       added_by: req.user._id,
     });
     await product.save();
-    agenda.schedule("in 1 minute", "prod", { id: product._id });
     return res.status(201).send(product);
   } catch (e) {
     console.log(e);
@@ -146,7 +146,8 @@ router.get("/my/listings", async (req, res) => {
     const products = await product_model
       .find({ added_by: req.user._id })
       .populate("added_by")
-      .populate("highest_bid_id");
+      .populate("highest_bid_id")
+      .sort({ _id: -1 });
     return res.status(200).send(products);
   } catch (e) {
     console.log(e);

@@ -33,13 +33,16 @@ router.post("/:product_id", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const watches = await user_product_model.find({ user_id: req.user._id });
+    const watches = await user_product_model
+      .find({ user_id: req.user._id })
+      .sort({ _id: -1 });
     const ids = watches.map((w) => w.product_id);
     // console.log(ids);
     const products = await product_model
       .find({ _id: { $in: ids } })
       .populate("added_by")
-      .populate("highest_bid_id");
+      .populate("highest_bid_id")
+      .sort({ _id: -1 });
     // console.log(products);
     return res.status(200).send(products);
   } catch (e) {
