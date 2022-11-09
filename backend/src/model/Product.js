@@ -91,7 +91,7 @@ product_schema.pre("save", async function (next) {
     bids.sort(sorter);
     product.highest_bid_id = bids[0]._id;
   }
-  agenda.schedule("in 1 minute", "prod", { id: product._id });
+  agenda.schedule("in 5 minutes", "prod", { id: product._id });
   next();
 });
 const product_model = mongoose.model("Product", product_schema);

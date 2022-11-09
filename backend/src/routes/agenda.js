@@ -22,7 +22,7 @@ const product_agenda = async (job) => {
     .populate("highest_bid_id");
   if (!product.highest_bid_id) {
     product.end_time = Date.now() + 5 * 60 * 1000;
-    agenda.schedule("in 2 minutes", "prod", { id: product._id });
+    agenda.schedule("in 5 minutes", "prod", { id: product._id });
     await product.save();
     console.log("27:", product);
   } else {
@@ -32,7 +32,6 @@ const product_agenda = async (job) => {
     });
     const buyer = await user_model.findById(product.highest_bid_id.user_id);
     const seller = await user_model.findById(product.added_by);
-    // if(!buyer||!seller)
     seller.wallet =
       Number(seller.wallet ? seller.wallet : 0) +
       Number(product.highest_bid_id.current_amount);

@@ -5,7 +5,6 @@ const authFunction = require("../middleware/authentication");
 const product_model = require("../model/Product");
 const user_product_model = require("../model/User_Product");
 const { BadRequestError, NotFoundError } = require("../util/error");
-const agenda = require("./agenda");
 const router = express.Router();
 
 const sorter = (a, b) => {
