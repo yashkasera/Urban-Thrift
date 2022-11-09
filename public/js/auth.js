@@ -1,5 +1,5 @@
 try {
-    if (sessionStorage.getItem("token")) {
+    if (localStorage.getItem("token")) {
         document.getElementById("profile").style.display = "block";
         document.getElementById("cart").style.display = "block";
         document.getElementById("login").style.display = "none";
@@ -20,8 +20,8 @@ const login = async () => {
         let password = document.getElementById("password").value;
         const {status, body, message} = await request('/user/login', 'POST', {email, password});
         if (status === 200) {
-            sessionStorage.setItem("token", body.token);
-            sessionStorage.setItem("user", JSON.stringify(body.user));
+            localStorage.setItem("token", body.token);
+            localStorage.setItem("user", JSON.stringify(body.user));
             if (window.location.search) {
                 window.location.href = window.location.search.substring(window.location.search.indexOf("=") + 1);
             } else {
@@ -38,7 +38,7 @@ const login = async () => {
 const logout = async () => {
     const response = await request('/user/logout', 'POST', {});
     if (response.status === 200) {
-        sessionStorage.clear();
+        localStorage.clear();
         localStorage.clear();
         showSnackbar("You have been logged out successfully");
         setTimeout(() => {
@@ -72,8 +72,8 @@ const signup = async () => {
         }
     });
     if (status === 201) {
-        sessionStorage.setItem("token", body.token);
-        sessionStorage.setItem("user", JSON.stringify(body.user));
+        localStorage.setItem("token", body.token);
+        localStorage.setItem("user", JSON.stringify(body.user));
         console.log(body.user);
         showSnackbar("You have been registered successfully");
         addBalanceDialog();

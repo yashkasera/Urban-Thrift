@@ -18,6 +18,9 @@
         document.getElementById("card_product_name").innerHTML = product.name
         document.getElementById("card_product_desc").innerHTML = product.description
         document.getElementById("card_current_bid").innerHTML = "Rs." + (product.highest_bid_id != null ? product.highest_bid_id['current_amount'] : product.min_bid)
+        document.getElementById("home_product_bid").onclick = () => {
+            showBidDialog(product)
+        }
     } catch (e) {
         console.error(e);
     }

@@ -46,7 +46,7 @@
 <div id="snackbar"></div>
 
 <script type="text/javascript">
-    if (sessionStorage.getItem("token")) {
+    if (localStorage.getItem("token")) {
         let x = window.location.search
         if (x) {
             window.location.replace(x.substring(x.indexOf('=') + 1));

@@ -1,15 +1,11 @@
-// 'use strict';
-
 const baseURL = "https://urbanthrift.azurewebsites.net/api/v1";
-// const baseURL = "https://0c83-42-106-236-77.ngrok.io/api/v1";
 
-// sessionStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzY1NWNhNWE3NDk1ZDQwYzQ3MDczMmQiLCJpYXQiOjE2Njc3NjU1OTV9.wtC5MfYDPcFrU5ffcBGhlyXvcplnVIbyGef-tgNDQ2s");
 const isLoggedIn = () => {
-    return sessionStorage.getItem("token") != null;
+    return localStorage.getItem("token") != null;
 }
 
 const getUser = () => {
-    return JSON.parse(sessionStorage.getItem("user"));
+    return JSON.parse(localStorage.getItem("user"));
 }
 
 const showLoading = () => {
@@ -46,7 +42,7 @@ const request = async (endpoint, method = 'GET', body) => {
             method: method,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + sessionStorage.getItem("token"),
+                'Authorization': 'Bearer ' + localStorage.getItem("token"),
                 'Access-Control-Allow-Origin': '*',
                 'mode': 'no-cors',
             },
@@ -382,7 +378,7 @@ async function addBalance(amount) {
     const response = await request('/user', 'PATCH', {wallet: amount})
     if (response.status === 200) {
         showSnackbar("Balance added successfully");
-        sessionStorage.setItem("user", JSON.stringify(response.body));
+        localStorage.setItem("user", JSON.stringify(response.body));
         window.location.replace("home.html");
         return true;
     } else {
