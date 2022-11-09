@@ -208,7 +208,7 @@ const showBidDialog = (product, isEdit = false) => {
         setTimeout(() => window.location.replace("./login.html?redirect=" + window.location.href), 1000);
         return;
     }
-    if (isLoggedIn() && product.added_by._id === getUser()._inDialog) {
+    if (isLoggedIn() && product.added_by._id === getUser()._id) {
         showSnackbar("You cannot bid on your own item");
         return;
     }

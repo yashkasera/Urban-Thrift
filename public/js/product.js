@@ -1,5 +1,6 @@
 let id = decodeURIComponent(window.location.search);
 id = id.substring(5);
+let product = undefined;
 if (id.length === 0) {
     window.location.replace("./404.html");
 }
@@ -49,7 +50,7 @@ function showSlides(n) {
 
 (async () => {
     const response = await request('/product/' + window.location.search.substring(5));
-    const product = response.body.product;
+    product = response.body.product;
     const relatedProducts = response.body.related_products;
     let slideIndex = 1;
     showSlides(slideIndex);
@@ -107,8 +108,6 @@ function showSlides(n) {
         thumbs.appendChild(div);
     }
 
-    /*---------Related Products----------*/
-
     relatedProducts.forEach(function (product) {
         document.getElementById("related").appendChild(getProductHtml(product));
     });
@@ -116,3 +115,11 @@ function showSlides(n) {
         window.location.assign("./category.html");
     };
 })();
+
+document.getElementById("action1").onclick = () => {
+    watchItem(id)
+}
+
+document.getElementById("action2").onclick = () => {
+    showBidDialog(product)
+}
