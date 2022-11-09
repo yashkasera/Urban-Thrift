@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Urban-Thrift | FAQs</title>
+    <meta charset="UTF-8">
+    <meta name="description" content=" UrbanThrift | FAQs">
+    <meta name="keywords" content="urbanthrift, eCommerce, shirts, trousers,pants,contact">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/favicon.ico" rel="shortcut icon"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+<!-- Header section -->
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a href="home.html" class="navbar-brand">
+                <img src="img/logo.png">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex">
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-4 my-2 my-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="category.html">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sell_now.html">Sell Now</a>
+                        </li>
+                        <li class="nav-item" id="login">
+                            <a class="nav-link" href="login.html">Login</a>
+                        </li>
+                        <li id="signup">
+                            <a href="sign_up.html"><button class="btn btn-primary"><i class="flaticon-profile"></i> Sign Up</button></a>
+                        </li>
+                        <li class="nav-item dropdown" id="profile">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Profile
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="my_bids.html">My Bids</a></li>
+                                <li><a class="dropdown-item" href="./my_orders.html">My Orders</a></li>
+                                <li><a class="dropdown-item" href="./my_listings.html">My Listings</a></li>
+
+                                <li><a class="dropdown-item" href="./my_profile.html">My Account</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" id="cart">
+                            <a class="btn btn-primary" href="my_watchlist.html">
+                                <i class="fa-solid fa-chart-line"></i><span id="watchlist-count" class="badge"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Header section end -->
+<section>
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Frequently Asked Questions</h3>
+                <br>
+                <h6 style="margin-bottom: 10px;">What is your return policy?</h6>
+                <p>You can check our return policy <a href="./return_policy.html">here</a>.</p>
+
+                <h6 style="margin-bottom: 10px;">What is your refund policy?</h6>
+                <p>You can check our return policy <a href="./return_policy.html">here</a>.</p>
+
+                <h6 style="margin-bottom: 10px;">How will I know that my order has been placed successfully?</h6>
+                <ul>
+                    <li>
+                        <p>Once you successfully place your order, you will receive a confirmation email with details of
+                            your order.</p>
+                    </li>
+                    <li>
+                        <p>You’ll receive another email once your order is shipped. After that, just relax and wait for
+                            your products to arrive soon!</p>
+                    </li>
+                </ul>
+                <br>
+                <h6 style="margin-bottom: 10px;">I tried placing my order using my Debit Card/ Credit Card/ Net
+                    Banking/Wallet. The order was not successful but the amount got deducted. What do I do?</h6>
+                <ul>
+                    <li>
+                        <p>Kindly check your bank account to ensure if your account has been debited. If your account
+                            has been debited after a payment failure, it is normally refunded by banks within 10
+                            business days.
+                        </p>
+                    </li>
+                    <li>
+                        <p>For any other assistance/issues you can write to us at support@urbanthrift.in, and we’ll fix
+                            the
+                            issue for you.</p>
+                    </li>
+                </ul>
+                <br>
+                <br>
+            </div>
+            <div class="col-lg-6 contact-info">
+                <h4>For any other queries, suggestions or complaints...</h4>
+                <br>
+                <form name="form1" method="post" class="contact-form" id="form1" onsubmit="send()">
+                    <div class="form-group">
+                        <label for="name">*Name:</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">*Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">*Subject:</label>
+                        <input type="text" class="form-control" id="subject" placeholder="Enter Subject" name="subject"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label>*Message :</label>
+                        <textarea class="form-control" id="message" placeholder="Enter Message" name="message"
+                                  style="height: 100px;" required></textarea>
+                    </div>
+                    <p align="right">* - Required</p>
+                    <button type="submit" class="site-btn">Submit</button>
+                    <label id="error" style="display:none" class="ui-state-error">*ERROR</label>
+                </form>
+            </div>
+
+        </div>
+        <br><br>
+
+
+        <br>
+        <br>
+    </div>
+</section>
+<!-- Footer section -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="footer-widget about-widget">
+                    <h2>About</h2>
+                    <p>At Urban Thrift, we aim to make buying sustainable fashion convenient and affordable. With
+                        multiple quality inspections, product assurance and stress on buying comfort, you can be
+                        confident about buying from Thrift stores across the country!</p>
+                    <img src="img/cards.png" alt="" style="width:auto; height:10%">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="footer-widget about-widget">
+                    <h2>Info</h2>
+                    <ul>
+                        <li><a href="./about_us.html">About Us</a></li>
+                        <li><a href="./FAQs.html">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer section end -->
+<script>
+    function send() {
+        event.preventDefault();
+        var name = document.forms["form1"]["name"].value;
+        var email = document.forms["form1"]["email"].value;
+        var subject = document.forms["form1"]["subject"].value;
+        var message = document.forms["form1"]["message"].value;
+        if (!name || !email || !subject || !message) {
+            document.getElementById("error").style.display = "block";
+            document.getElementById("error").innerHTML = "Cannot be empty!";
+        } else {
+            document.getElementById("form1").reset();
+            db.collection("messages").doc().set({
+                name: name,
+                email: email,
+                subject: subject,
+                message: message,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(function () {
+                alert("Message sent successfully");
+                setTimeout(function () {
+                    window.location.replace("home.html");
+                }, 3000);
+            }).then(function (docRef) {
+                console.log("Document written with ID: ");
+            })
+                .catch(function (error) {
+                    console.error("Error adding document: ", error);
+                });
+        }
+        setTimeout(function () {
+            document.getElementById("error").style.display = "none";
+        }, 3000);
+    }
+
+    auth.onAuthStateChanged(function (user) {
+        if (user) {
+            document.getElementById("profile").style.display = "block";
+
+            document.getElementById("login").style.visibility = "hidden";
+            document.getElementById("signUp").style.visibility = "hidden";
+        } else {
+
+            document.getElementById("profile").style.display = "none";
+            ;
+            document.getElementById("login").style.visibility = "visible";
+            document.getElementById("signUp").style.visibility = "visible";
+        }
+    });
+
+    var x = JSON.parse(localStorage.getItem("cart"));
+    document.getElementById("watchlist-count").innerHTML = (x == null) ? 0 : x.length;</script>
+<div id="snackbar"></div>
+
+<!--====== Javascripts & Jquery ======-->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/978e5c8e46.js" crossorigin="anonymous"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+
+</body>
+
+</html>

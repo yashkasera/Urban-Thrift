@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Urban-Thrift | Sell or Donate Products</title>
+    <meta charset="UTF-8">
+    <meta name="description"
+          content="At Urban Thrift, we aim to make buying sustainable fashion convenient and affordable. With multiple quality inspections, product assurance and stress on buying comfort, you can be confident about buying from Thrift stores across the country!">
+    <meta name="keywords" content="urbanthrift, eCommerce, shopping, clothing">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/favicon.ico" rel="shortcut icon"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+<!-- Header section -->
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a href="home.html" class="navbar-brand">
+                <img src="img/logo.png">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex">
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-4 my-2 my-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="category.html">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="sell_now.html">Sell Now</a>
+                        </li>
+                        <li class="nav-item" id="login">
+                            <a class="nav-link" href="login.html">Login</a>
+                        </li>
+                        <li id="signup">
+                            <a href="sign_up.html"><button class="btn btn-primary"><i class="flaticon-profile"></i> Sign Up</button></a>
+                        </li>
+                        <li class="nav-item dropdown" id="profile">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Profile
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="my_bids.html">My Bids</a></li>
+                                <li><a class="dropdown-item" href="./my_orders.html">My Orders</a></li>
+                                <li><a class="dropdown-item" href="./my_listings.html">My Listings</a></li>
+
+                                <li><a class="dropdown-item" href="./my_profile.html">My Account</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" id="cart">
+                            <a class="btn btn-primary" href="my_watchlist.html">
+                                <i class="fa-solid fa-chart-line"></i><span id="watchlist-count" class="badge"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Header section end -->
+<section class="container mt-5">
+    <h2>Earn by selling your clothes</h2>
+    <form name="ADD" method="post" id="ADD" class="mt-4">
+        <div class="form-group row mt-3">
+            <div class="col-sm-4">
+                <label for="name">Name of product:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter Product Name" name="name"
+                       required>
+            </div>
+            <div class="col-sm-4">
+                <label for="min_bid">Minimum Bid:</label>
+                <input type="number" class="form-control" id="min_bid" placeholder="Enter Minimum Bid Amount"
+                       name="min_bid" required>
+            </div>
+            <div class="col-sm-4">
+                <label for="category">Product Category</label>
+                <select class="form-control" id="category" onchange="ifshoe()" name="category">
+                    <option value="" disabled selected>-- select one --</option>
+                    <option value="Topwear">Topwear</option>
+                    <option value="Dresses">Dresses</option>
+                    <option value="Overalls">Overalls</option>
+                    <option value="Bottomwear">Bottomwear</option>
+                    <option value="Innerwear">Innerwear</option>
+                    <option value="Footwear">Footwear</option>
+                    <option value="Accessories">Accessories</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row mt-3">
+            <div class="col-sm-3">
+                <label for="material">Material:</label>
+                <input type="text" class="form-control" id="material" placeholder="Enter Product Material"
+                       name="material" required>
+            </div>
+            <div class="col-sm-3">
+                <label for="color">Product Color:</label>
+                <select class="form-control" id="color" name="color" required>
+                    <option value="" disabled selected>-- select one --</option>
+                    <option value="Black">Black</option>
+                    <option value="Brown">Brown</option>
+                    <option value="Red">Red</option>
+                    <option value="Orange">Orange</option>
+                    <option value="Yellow">Yellow</option>
+                    <option value="Green">Green</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Violet">Violet</option>
+                    <option value="White">White</option>
+                    <option value="Pink">Pink</option>
+                    <option value="Gray">Gray</option>
+                    <option value="Gold">Gold</option>
+                    <option value="Silver">Silver</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <label for="brand">Product Brand:</label>
+                <input type="text" class="form-control" id="brand" placeholder="Enter Product Brand"
+                       name="brand" required>
+            </div>
+            <div class="col-sm-3 d-flex flex-column justify-content-center h-100">
+                <div>
+                    <label for="condition">Product Condition:&nbsp;</label>
+                    <label id="condition1">3</label>
+                </div>
+                <!-- <p>Rate the product condition out of 10&nbsp;<br></p> -->
+                <input type="range" style="width: 100%;" id="condition" min="1" max="5" value="3"
+                       onmousemove="document.getElementById('condition1').innerHTML=value"
+                       oninput="document.getElementById('condition1').innerHTML=value"
+                       onkeydown="document.getElementById('condition1').innerHTML=value">
+            </div>
+        </div>
+
+        <div class="form-group row mt-3">
+            <div class="col-sm-4">
+                <label for="size" id="s">Product Size:</label>
+                <select class="form-control" id="size" name="size" required>
+                    <option value="" disabled selected>-- select one --</option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                    <option value="XXXL">XXXL</option>
+                    <option value="XXXL">>XXXL</option>
+                </select>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="size_description">Size Description:</label>
+                    <input id="size_description" name="size_description" class="form-control" spellcheck="true"
+                           placeholder="Enter Size Description ">
+                </div>
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <label for="description">Product Description:</label>
+            <textarea id="description" name="description" class="form-control" spellcheck="true"
+                      placeholder="Enter Description (Please clearly justify your product rating)"
+                      oninput="char()"
+                      required></textarea>
+            <p class="text-lg-right" id="chars">*Minimum 50 characters</p>
+        </div>
+        <div class="mb-3">
+            <label for="images" class="form-label">Product Images (800*800)</label>
+            <input class="form-control" type="file" id="images" multiple name="images">
+            <p>*Atleast two images</p>
+        </div>
+        <label id="error" style="display:none" class="alert alert-danger mt-5">*ERROR</label>
+        <div class="form-group mt-5 d-flex flex-row justify-content-between">
+            <button type="reset" class="site-btn sb-dark sb-line me-4">Reset</button>
+            <button type="submit" class="site-btn sb-dark" id="upload" onClick="add()">Add Item</button>
+        </div>
+    </form>
+</section>
+<!-- Footer section -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="footer-widget about-widget">
+                    <h2>About</h2>
+                    <p>At Urban Thrift, we aim to make buying sustainable fashion convenient and affordable. With
+                        multiple quality inspections, product assurance and stress on buying comfort, you can be
+                        confident about buying from Thrift stores across the country!</p>
+                    <img src="img/cards.png" alt="" style="width:auto; height:10%">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="footer-widget about-widget">
+                    <h2>Info</h2>
+                    <ul>
+                        <li><a href="./about_us.html">About Us</a></li>
+                        <li><a href="./FAQs.html">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer section end -->
+<div id="snackbar"></div>
+
+<!--====== Javascripts & Jquery ======-->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/978e5c8e46.js" crossorigin="anonymous"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyBFTQusP7Vvxl4v39mxwXzqMaqzdFt97ak",
+        authDomain: "urban-thrift.firebaseapp.com",
+        projectId: "urban-thrift",
+        storageBucket: "urban-thrift.appspot.com",
+        messagingSenderId: "651623347250",
+        appId: "1:651623347250:web:dde3a10fa038ac682a782b"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+</script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/sell.js"></script>
+</body>
+
+</html>

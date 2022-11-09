@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Urban-Thrift | Categories</title>
+    <meta charset="UTF-8">
+    <meta name="description" content=" Urban-Thrift | Categories">
+    <meta name="keywords" content="urbanthrift, eCommerce, shopping, clothing">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/favicon.ico" rel="shortcut icon"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"/>
+    <style>
+        .chip {
+            display: inline-block;
+            padding: 0 16.67px;
+            height: 33.33px;
+            font-size: 12px;
+            line-height: 33.33px;
+            border-radius: 16.67px;
+            background-color: #c9e265;
+        }
+
+        .chip img {
+            float: left;
+            margin: 0 5px 0 -12.5px;
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+        }
+
+        .closebtn {
+            padding-left: 10px;
+            color: #888;
+            font-weight: bold;
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .closebtn:hover {
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Header section -->
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a href="home.html" class="navbar-brand">
+                <img src="img/logo.png">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex">
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-4 my-2 my-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="category.html">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sell_now.html">Sell Now</a>
+                        </li>
+                        <li class="nav-item" id="login">
+                            <a class="nav-link" href="login.html">Login</a>
+                        </li>
+                        <li id="signup">
+                            <a href="sign_up.html">
+                                <button class="btn btn-primary"><i class="flaticon-profile"></i> Sign Up</button>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown" id="profile">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Profile
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="my_bids.html">My Bids</a></li>
+                                <li><a class="dropdown-item" href="./my_orders.html">My Orders</a></li>
+                                <li><a class="dropdown-item" href="./my_listings.html">My Listings</a></li>
+
+                                <li><a class="dropdown-item" href="./my_profile.html">My Account</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" id="cart">
+                            <a class="btn btn-primary" href="my_watchlist.html">
+                                <i class="fa-solid fa-chart-line"></i><span id="watchlist-count" class="badge"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Header section end -->
+<!-- Category section -->
+<section class="category-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 order-1 order-lg-1" style="padding-right: 20px;">
+                <div class="filter-widget">
+                    <h4>Filters</h4>
+                    <div class="text-body" id="id_filters">
+
+                    </div>
+                    <label class="text-info" id="show_filters" style="display: none;"><a
+                            onclick="window.location.replace('./category.html')">Clear Filters</a></label>
+                    <br><br>
+                    <h6>Type</h6>
+                    <ul class="category-menu">
+                        <li><a href="#" onclick="filter('category','Topwear')">Topwear</a></li>
+                        <li><a href="#" onclick="filter('category','Bottomwear')">Bottomwear</a></li>
+                        <li><a href="#" onclick="filter('category','Overalls')">Overalls</a></li>
+                        <li><a href="#" onclick="filter('category','Dresses')">Dresses</a></li>
+                        <li><a href="#" onclick="filter('category','Footwear')">Footwear</a></li>
+                        <li><a href="#" onclick="filter('category','Innerwear')">Innerwear</a></li>
+                        <li><a href="#" onclick="filter('category','Accessories')">Accessories</a></li>
+                    </ul>
+
+                </div>
+                <div class="filter-widget mb-0">
+                    <h6>Size</h6>
+                    <div class="fw-size-choose">
+                        <div class="sc-item">
+                            <input type="radio" name="sc" id="XS-size" onclick="filter('size','XS')">
+                            <label for="XS-size">XS</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" name="sc" id="S-size" onclick="filter('size','S')">
+                            <label for="S-size">S</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" name="sc" id="M-size" onclick="filter('size','M')">
+                            <label for="M-size">M</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" name="sc" id="L-size" onclick="filter('size','L')">
+                            <label for="L-size">L</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" name="sc" id="XL-size" onclick="filter('size','XL')">
+                            <label for="XL-size">XL</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" name="sc" id="XXL-size" onclick="filter('size','XXL')">
+                            <label for="XXL-size">XXL</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" name="sc" id="XXXL-size" onclick="filter('size','XXXL')">
+                            <label for="XXXL-size">XXXL</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" name="sc" id=">XXXL-size" onclick="filter('size','>XXXL')">
+                            <label for=">XXXL-size">>XXXL</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-widget">
+                    <h6>Color</h6>
+                    <button style="background-color: black; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','Black')"></button>
+                    <button style="background-color: white; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','White')"></button>
+                    <button style="background-color: brown; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','Brown')"></button>
+                    <button style="background-color: red; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','Red')"></button>
+                    <button style="background-color: orange; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','Orange')"></button>
+                    <button style="background-color: yellow; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','Yellow')"></button>
+                    <button style="background-color: green; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','Green')"></button>
+                    <button style="background-color: blue; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','Blue')"></button>
+                    <button style="background-color: pink; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','Pink')"></button>
+                    <button style="background-color: blueviolet; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','Violet')"></button>
+                    <button style="background-color: gray; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','Gray')"></button>
+                    <button style="background-color: gold; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','Gold')"></button>
+                    <button style="background-color: silver; height: 20px; width: 20px; cursor: pointer;"
+                            onclick="filter('color','Silver')"></button>
+                    <br><br>
+                </div>
+            </div>
+
+            <div class="col-lg-9  order-2 order-lg-2 mb-5 mb-lg-0">
+                <div class="row" id="products">
+
+                </div>
+                <div class="text-center w-100 pt-3" id="more" style="display: none;">
+                    <h3>No items found matching your selection.</h3><br><br>
+                    <a href="./category.html">
+                        <button class="site-btn sb-line sb-dark">Show All
+                            products
+                        </button>
+                    </a>
+                </div>
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#" onclick="fetchPage(1)">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#" onclick="fetchPage(2)">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#" onclick="fetchPage(3)">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Category section end -->
+<!-- Footer section -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="footer-widget about-widget">
+                    <h2>About</h2>
+                    <p>At Urban Thrift, we aim to make buying sustainable fashion convenient and affordable. With
+                        multiple quality inspections, product assurance and stress on buying comfort, you can be
+                        confident about buying from Thrift stores across the country!</p>
+                    <img src="img/cards.png" alt="" style="width:auto; height:10%">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="footer-widget about-widget">
+                    <h2>Info</h2>
+                    <ul>
+                        <li><a href="./about_us.html">About Us</a></li>
+                        <li><a href="./FAQs.html">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer section end -->
+<div id="snackbar"></div>
+<!--====== Javascripts & Jquery ======-->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/978e5c8e46.js" crossorigin="anonymous"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/category.js"></script>
+</body>
+
+</html>

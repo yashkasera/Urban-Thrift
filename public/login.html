@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UrbanThrift | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="vh-100 m-0 p-0">
+<div class="d-flex flex-row vh-100">
+    <div class="col-md-7 bg-lines">
+        <div class="m-4">
+            <a href="./home.html">
+                <div class="navbar-brand" style="width: 40%">
+                    <img src="img/logo.png">
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-12 h-100 text-white d-flex flex-column justify-content-center p-5 bg-gray">
+        <div>
+            <h3 class="text-center mb-5">Log In</h3>
+            <form class="w-100" method="post" onsubmit="login()">
+                <div class="form-floating mb-2 w-100">
+                    <input type="email" class="form-control bg-transparent text-white" id="email"
+                           placeholder="name@example.com">
+                    <label for="email">Email address</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="password" class="form-control bg-transparent text-white" id="password" name="password"
+                           placeholder="Password">
+                    <label for="password">Password</label>
+                </div>
+                <div class="mt-1 text-end">
+                    <a class=" text-light" href="forgotPassword()">Forgot Password?</a>
+                </div>
+                <div class="d-flex flex-row justify-content-center mt-5">
+                    <button type="submit" class="btn btn-light w-75">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="text-center mt-2">Not a user? Sign Up</div>
+    </div>
+</div>
+<div id="snackbar"></div>
+
+<script type="text/javascript">
+    if (sessionStorage.getItem("token")) {
+        let x = window.location.search
+        if (x) {
+            window.location.replace(x.substring(x.indexOf('=') + 1));
+        } else {
+            window.location.replace('home.html');
+        }
+    }
+</script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/978e5c8e46.js" crossorigin="anonymous"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

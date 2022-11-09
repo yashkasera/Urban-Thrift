@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Urban-Thrift | Home</title>
+    <meta charset="UTF-8">
+    <meta name="description"
+          content="At Urban Thrift, we aim to make buying sustainable fashion convenient and affordable. With multiple quality inspections, product assurance and stress on buying comfort, you can be confident about buying from Thrift stores across the country!">
+    <meta name="keywords" content="urbanthrift, eCommerce, shopping, clothing">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/favicon.ico" rel="shortcut icon"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+<!-- Header section -->
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a href="home.html" class="navbar-brand">
+                <img src="img/logo.png">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex">
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-4 my-2 my-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="category.html">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sell_now.html">Sell Now</a>
+                        </li>
+                        <li class="nav-item" id="login">
+                            <a class="nav-link" href="login.html">Login</a>
+                        </li>
+                        <li id="signup">
+                            <a href="sign_up.html">
+                                <button class="btn btn-primary"><i class="flaticon-profile"></i> Sign Up</button>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown" id="profile">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Profile
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="my_bids.html">My Bids</a></li>
+                                <li><a class="dropdown-item" href="./my_orders.html">My Orders</a></li>
+                                <li><a class="dropdown-item" href="./my_listings.html">My Listings</a></li>
+                                <li><a class="dropdown-item" href="./my_profile.html">My Account</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" id="cart">
+                            <a class="btn btn-primary" href="my_watchlist.html">
+                                <i class="fa-solid fa-chart-line"></i><span id="watchlist-count" class="badge"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Header section end -->
+<!--Hero section start-->
+<section>
+    <div class="bg-lines vh-100 d-flex flex-column">
+        <div class="container mt-5 h-75 d-flex flex-md-row flex-sm-column align-items-center">
+            <div class="col-md-6 col-sm-12">
+                <h1>
+                    Your favorite <br/>
+                    brands just <br/>
+                    turned <br/>
+                    <div class="hero-text">
+                        <mark class="bg-gray text-white">pocket-friendly</mark>
+                    </div>
+                </h1>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="card d-flex flex-column" style="width: 50%; margin-left: 100px">
+                    <img class="card-img" id="card_product_img"/>
+                    <div class="card-body popover-arrow">
+                        <h6 class="heading" id="card_product_name"></h6>
+                        <p id="card_product_desc"></p>
+                        <div class="footer d-flex justify-content-between">
+                            <div class="bid">
+                                Current Bid <br/>
+                                <strong class="price" id="card_current_bid"></strong>
+                            </div>
+                            <button class="btn btn-light pt-2 pb-2">Bid now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-container d-flex flex-row">
+                    <div class="tab bg-gray"></div>
+                    <div class="tab">.</div>
+                    <div class="tab"></div>
+                    <div class="tab"></div>
+                    <div class="tab"></div>
+                    <div class="tab"></div>
+                    <div class="tab"></div>
+                </div>
+            </div>
+        </div>
+        <img src="img/brands.png" style="width: 50%; margin: auto; display: flex">
+    </div>
+</section>
+<!--Hero section end-->
+
+<!-- latest product section -->
+<section class="bg-gray">
+    <div class="container">
+        <div class="section-title">
+            <h2 class="text-white">Latest Arrivals</h2>
+        </div>
+        <div class="row" id="latest">
+        </div>
+        <br>
+        <center><a href="category.html">
+            <button class="site-btn sb-line sb-white">LOAD MORE</button>
+        </a></center>
+    </div>
+</section>
+<!-- latest product section end -->
+<!--trending section-->
+<section class="top-latest-product-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Trending Now</h2>
+        </div>
+        <div class="row" id="trending">
+
+        </div>
+        <br>
+        <center><a href="category.html">
+            <button class="site-btn sb-line sb-dark">LOAD MORE</button>
+        </a></center>
+    </div>
+</section>
+<!-- trending section end -->
+<!-- categories section -->
+<section class="bg-gray">
+    <div class="container my-5">
+        <div class="section-title mb-5">
+            <h2 class="text-white">Shop by category</h2>
+        </div>
+        <div class="px-5 d-flex flex-row justify-content-around">
+            <div class="card bg-white clickable" onclick="openCategory('Topwear')">
+                <img src="img/category/topwear.png" class="card-img"/>
+                <span class="card-footer text-center bg-gray">Topwear</span>
+            </div>
+            <div class="card bg-white clickable" onclick="openCategory('Dresses')">
+                <img src="img/category/dress.png" class="card-img"/>
+                <span class="card-footer text-center bg-gray">Dresses</span>
+            </div>
+            <div class="card bg-white clickable" onclick="openCategory('Bottomwear')">
+                <img src="img/category/bottomwear.png" class="card-img"/>
+                <span class="card-footer text-center bg-gray">Bottomwear</span>
+            </div>
+            <div class="card bg-white clickable" onclick="openCategory('Footwear')">
+                <img src="img/category/footwear.png" class="card-img"/>
+                <span class="card-footer text-center bg-gray">Footwear</span>
+            </div>
+            <div class="card bg-white clickable" onclick="openCategory('Accessories')">
+                <img src="img/category/accessories.png" class="card-img"/>
+                <span class="card-footer text-center bg-gray">Accessories</span>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- categories section end -->
+<!-- brands section-->
+<section class="vh-100">
+    <div class="container d-flex  flex-column h-100 justify-content-center">
+        <div class="section-title mb-5">
+            <h2>Top Brands</h2>
+        </div>
+        <div class="d-flex flex-column">
+            <div class="row align-items-center mb-5">
+                <div class="col-sm-4 col-md-2 h-100">
+                    <div class="brand-card" onclick="openBrand('Adidas')">
+                        <div>
+                            <img src="img/brand/adidas.png">
+                        </div>
+                        <span class="text-white m-2 w-100 text-center">Adidas</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2 h-100">
+                    <div class="brand-card" onclick="openBrand('Balenciaga')">
+                        <div>
+                            <img src="img/brand/balenciaga.png">
+                        </div>
+                        <span class="text-white m-2 w-100 text-center">Balenciaga</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2 h-100">
+                    <div class="brand-card" onclick="openBrand('Balmain')">
+                        <div>
+                            <img src="img/brand/balmain.png">
+                        </div>
+                        <span class="text-white m-2 w-100 text-center">Balmain</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2 h-100">
+                    <div class="brand-card" onclick="openBrand('Calvin Klein')">
+                        <div>
+                            <img src="img/brand/ck.png">
+                        </div>
+                        <span class="text-white m-2 w-100 text-center">Calvin Klein</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2 h-100">
+                    <div class="brand-card" onclick="openBrand('Emporio Armani')">
+                        <div>
+                            <img src="img/brand/armani.png">
+                        </div>
+                        <span class="text-white m-2 w-100 text-center">Emporio Armani</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2 h-100">
+                    <div class="brand-card" onclick="openBrand('Gucci')">
+                        <div>
+                            <img src="img/brand/gucci.png">
+                        </div>
+                        <span class="text-white m-2 w-100 text-center">Gucci</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center mb-5">
+                <div class="col-sm-4 col-md-2 h-100">
+                    <div class="brand-card" onclick="openBrand('Hackett')">
+                        <div>
+                            <img src="img/brand/hackett.png">
+                        </div>
+                        <span class="text-white m-2 w-100 text-center">Hackett</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2 h-100">
+                    <div class="brand-card" onclick="openBrand('H&M')">
+                        <div>
+                            <img src="img/brand/hm.png">
+                        </div>
+                        <span class="text-white m-2 w-100 text-center">H&M</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2 h-100">
+                    <div class="brand-card" onclick="openBrand('Hugo Boss')">
+                        <div>
+                            <img src="img/brand/boss.png">
+                        </div>
+                        <span class="text-white m-2 w-100 text-center">Hugo Boss</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2 h-100">
+                    <div class="brand-card" onclick="openBrand('Louis Vuitton')">
+                        <div>
+                            <img src="img/brand/lv.png">
+                        </div>
+                        <span class="text-white m-2 w-100 text-center">Louis Vuitton</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2 h-100">
+                    <div class="brand-card" onclick="openBrand('Omega')">
+                        <div>
+                            <img src="img/brand/omega.png">
+                        </div>
+                        <span class="text-white m-2 w-100 text-center">Omega</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2 h-100">
+                    <div class="brand-card" onclick="openBrand('Zara')">
+                        <div>
+                            <img src="img/brand/zara.png">
+                        </div>
+                        <span class="text-white m-2 w-100 text-center">Zara</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- brands section send -->
+<!-- Footer section -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="footer-widget about-widget">
+                    <h2>About</h2>
+                    <p>At Urban Thrift, we aim to make buying sustainable fashion convenient and affordable. With
+                        multiple quality inspections, product assurance and stress on buying comfort, you can be
+                        confident about buying from Thrift stores across the country!</p>
+                    <img src="img/cards.png" alt="" style="width:auto; height:10%">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="footer-widget about-widget">
+                    <h2>Info</h2>
+                    <ul>
+                        <li><a href="./about_us.html">About Us</a></li>
+                        <li><a href="./FAQs.html">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer section end -->
+<div id="snackbar"></div>
+
+<!--====== Javascripts & Jquery ======-->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/978e5c8e46.js" crossorigin="anonymous"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/home.js"></script>
+</body>
+
+</html>

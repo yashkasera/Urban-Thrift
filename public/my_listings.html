@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Urban-Thrift | My Listings</title>
+    <meta charset="UTF-8">
+    <meta name="description" content=" Urban-Thrift | My Listings">
+    <meta name="keywords" content="urbanthrift, eCommerce, shopping, clothing">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/favicon.ico" rel="shortcut icon"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet"/>
+    <style>
+        .table > tbody > tr > td,
+        .table > tfoot > tr > td {
+            vertical-align: middle;
+        }
+
+        @media screen and (max-width: 600px) {
+            table#cart tbody td .form-control {
+                width: 20%;
+                display: inline !important;
+            }
+
+            .actions .btn {
+                width: 36%;
+                max-width: 36%;
+                margin: 1.5em 0;
+            }
+
+            .actions .btn-info {
+                float: left;
+                max-width: 16%;
+            }
+
+            .actions .btn-danger {
+                max-width: 16%;
+                float: right;
+            }
+
+            table#cart thead {
+                display: none;
+            }
+
+            table#cart tbody td {
+                display: block;
+                padding: .6rem;
+                min-width: 320px;
+            }
+
+            table#cart tbody tr td:first-child {
+                background: #fff;
+                color: #fff;
+            }
+
+            table#cart tbody td:before {
+                content: attr(data-th);
+                font-weight: bold;
+                display: inline-block;
+                width: 8rem;
+            }
+
+            table#cart tfoot td {
+                display: block;
+            }
+
+            table#cart tfoot td .btn {
+                display: block;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+<!-- Header section -->
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a href="home.html" class="navbar-brand">
+                <img src="img/logo.png">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex">
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-4 my-2 my-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="category.html">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sell_now.html">Sell Now</a>
+                        </li>
+                        <li class="nav-item" id="login">
+                            <a class="nav-link" href="login.html">Login</a>
+                        </li>
+                        <li id="signup">
+                            <a href="sign_up.html"><button class="btn btn-primary"><i class="flaticon-profile"></i> Sign Up</button></a>
+                        </li>
+                        <li class="nav-item dropdown" id="profile">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Profile
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="my_bids.html">My Bids</a></li>
+                                <li><a class="dropdown-item" href="./my_orders.html">My Orders</a></li>
+                                <li><a class="dropdown-item" href="./my_listings.html">My Listings</a></li>
+                                <li><a class="dropdown-item" href="./my_profile.html">My Account</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" id="cart">
+                            <a class="btn btn-primary" href="my_watchlist.html">
+                                <i class="fa-solid fa-chart-line"></i><span id="watchlist-count" class="badge"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Header section end -->
+
+<!-- listing section end -->
+<section style="margin-top: 40px;">
+    <div class="container">
+        <h3>Your Listings</h3>
+        <table class="table table-hover table-condensed">
+            <thead>
+            <tr>
+                <th style="width: 60%">Product</th>
+                <th style="width: 10%">Size</th>
+                <th style="width: 10%">Watchers</th>
+                <th style="width: 10%">Highest Bid</th>
+                <th style="width: 10%"></th>
+            </tr>
+            </thead>
+            <tbody id="table_ins">
+
+            </tbody>
+        </table>
+    </div>
+</section>
+<!-- listing section end -->
+
+<!-- Footer section -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="footer-widget about-widget">
+                    <h2>About</h2>
+                    <p>At Urban Thrift, we aim to make buying sustainable fashion convenient and affordable. With
+                        multiple quality inspections, product assurance and stress on buying comfort, you can be
+                        confident about buying from Thrift stores across the country!</p>
+                    <img src="img/cards.png" alt="" style="width:auto; height:10%">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="footer-widget about-widget">
+                    <h2>Info</h2>
+                    <ul>
+                        <li><a href="./about_us.html">About Us</a></li>
+                        <li><a href="./FAQs.html">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer section end -->
+<div id="snackbar"></div>
+<!-- Footer section end -->
+<script>
+</script>
+<!--====== Javascripts & Jquery ======-->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/978e5c8e46.js" crossorigin="anonymous"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/listings.js"></script>
+</body>
+
+</html>

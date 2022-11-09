@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Urban-Thrift | Product</title>
+    <meta charset="UTF-8">
+    <meta name="description" content=" Urban-Thrift | Product">
+    <meta name="keywords" content="urbanthrift, eCommerce, clothing, reuse">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/favicon.ico" rel="shortcut icon"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body>
+
+<!-- Header section -->
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a href="home.html" class="navbar-brand">
+                <img src="img/logo.png">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex">
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-4 my-2 my-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="category.html">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sell_now.html">Sell Now</a>
+                        </li>
+                        <li class="nav-item" id="login">
+                            <a class="nav-link" href="login.html">Login</a>
+                        </li>
+                        <li id="signup">
+                            <a href="sign_up.html"><button class="btn btn-primary"><i class="flaticon-profile"></i> Sign Up</button></a>
+                        </li>
+                        <li class="nav-item dropdown" id="profile">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Profile
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="my_bids.html">My Bids</a></li>
+                                <li><a class="dropdown-item" href="./my_orders.html">My Orders</a></li>
+                                <li><a class="dropdown-item" href="./my_listings.html">My Listings</a></li>
+                                <li><a class="dropdown-item" href="./my_profile.html">My Account</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" id="cart">
+                            <a class="btn btn-primary" href="my_watchlist.html">
+                                <i class="fa-solid fa-chart-line"></i><span id="watchlist-count" class="badge"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Header section end -->
+<section class="mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div id="prdImage">
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+                <div class="row" id="thumbs"></div>
+            </div>
+            <div class="col-lg-6 product-details">
+                <h2 class="p-title" id="title"></h2>
+                <h5 class="p-price" id="price"></h5>
+                <p class="cursor">
+                    <a onclick="whatsapp()"><i class="fa fa-whatsapp"></i> Share on whatsapp</a>
+                </p>
+                <!-- ACCORDION-->
+                <div>
+                    <h6>Product Description</h6>
+                    <p id="desc"></p>
+                    <p>
+                        <strong>Material: </strong>
+                        <span id="material"></span>
+                        <strong>Size Available: </strong>
+                        <label id="size"></label>
+                    </p>
+                    <p id="size_desc"></p>
+                    <a class="link-info small"
+                       href="https://www.bicycle-line.com/pub/media/wysiwyg/Tabella-Taglie_EN_1.png">View Size chart</a>
+                </div>
+                <span class="alert alert-danger" style="min-width: 100%;display: none;" id="not-available">This
+						product is not available anymore!<br></span>
+                <br>
+                <div class="row mt-3">
+                    <div class="col-sm-4 col-lg-4">
+                        <button onclick="watchItem(window.location.search.substring(5))" id="action1"
+                                class="site-btn sb-dark sb-line"
+                                style="min-width: 100%;padding: 18px 0px 14px;">
+                            <i class="flaticon-push-pin"></i>
+                            WATCH ITEM
+                        </button>
+                    </div>
+                    <div class="col-sm-4 col-lg-4">
+                        <button onclick="bidOnItem(window.location.search.substring(5))" id="action3"
+                                class="site-btn w-100"
+                                style="min-width: 100%;padding: 18px 0px 14px;"><i class="fa fa-rupee"></i> BID NOW
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- product section end -->
+<!-- RELATED PRODUCTS section -->
+<section class="related-product-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>RELATED PRODUCTS</h2>
+        </div>
+        <div class="row" id="related">
+
+        </div>
+        <div class="text-center w-100 pt-3">
+            <button class="site-btn sb-line sb-dark" id="more">LOAD MORE</button>
+        </div>
+    </div>
+</section>
+<!-- RELATED PRODUCTS section end -->
+<!-- Footer section -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="footer-widget about-widget">
+                    <h2>About</h2>
+                    <p>At Urban Thrift, we aim to make buying sustainable fashion convenient and affordable. With
+                        multiple quality inspections, product assurance and stress on buying comfort, you can be
+                        confident about buying from Thrift stores across the country!</p>
+                    <img src="img/cards.png" alt="" style="width:auto; height:10%">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="footer-widget about-widget">
+                    <h2>Info</h2>
+                    <ul>
+                        <li><a href="./about_us.html">About Us</a></li>
+                        <li><a href="./FAQs.html">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer section end -->
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Position the image container (needed to position the left and right arrows) */
+
+
+    /* Hide the images by default */
+    .mySlides {
+        display: none;
+    }
+
+    /* Add a pointer when hovering over the thumbnail images */
+    .cursor {
+        cursor: pointer;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -50px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover,
+    .next:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* Container for image text */
+    .caption-container {
+        text-align: center;
+        background-color: #222;
+        padding: 2px 16px;
+        color: white;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .column {
+        float: left;
+        width: 16.66%;
+    }
+
+    .demo {
+        opacity: 0.6;
+    }
+
+    .active,
+    .demo:hover {
+        opacity: 1;
+    }
+</style>
+<!--====== Javascripts & Jquery ======-->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/978e5c8e46.js" crossorigin="anonymous"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/product.js"></script>
+</body>
+</html>

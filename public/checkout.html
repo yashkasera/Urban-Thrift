@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-storage.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script>
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCShltEjBvlNT5uPnam4nXSLuCUyQQPx3w",
+            authDomain: "thrift-it-6292f.firebaseapp.com",
+            databaseURL: "https://thrift-it-6292f.firebaseio.com",
+            projectId: "thrift-it-6292f",
+            storageBucket: "thrift-it-6292f.appspot.com",
+            messagingSenderId: "349474094670",
+            appId: "1:349474094670:web:72e88ee219b10a689a8d1f",
+            measurementId: "G-19WP7K4Y1V"
+        };
+        firebase.initializeApp(firebaseConfig);
+        let db = firebase.firestore();
+        let storageRef = firebase.storage().ref();
+        let auth = firebase.auth();</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNFE8VX7N8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-CNFE8VX7N8');
+    </script>
+    <title>Urban-Thrift | Checkout</title>
+    <meta charset="UTF-8">
+    <meta name="description" content=" Urban-Thrift | Checkout">
+    <meta name="keywords" content="urbanthrift, eCommerce, shopping, clothing">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/favicon.ico" rel="shortcut icon"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+<!-- Header section -->
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a href="home.html" class="navbar-brand">
+                <img src="img/logo.png">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex">
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-4 my-2 my-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="category.html">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sell_now.html">Sell Now</a>
+                        </li>
+                        <li class="nav-item" id="login">
+                            <a class="nav-link" href="login.html">Login</a>
+                        </li>
+                        <li id="signup">
+                            <a href="sign_up.html"><button class="btn btn-primary"><i class="flaticon-profile"></i> Sign Up</button></a>
+                        </li>
+                        <li class="nav-item dropdown" id="profile">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Profile
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="my_bids.html">My Bids</a></li>
+                                <li><a class="dropdown-item" href="./my_orders.html">My Orders</a></li>
+                                <li><a class="dropdown-item" href="./my_listings.html">My Listings</a></li>
+
+                                <li><a class="dropdown-item" href="./my_profile.html">My Account</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" id="cart">
+                            <a class="btn btn-primary" href="my_watchlist.html">
+                                <i class="fa-solid fa-chart-line"></i><span id="watchlist-count" class="badge"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Header section end -->
+<!-- checkout section  -->
+<section class="checkout-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 order-2 order-lg-1">
+                <form class="checkout-form" id="checkout">
+                    <div class="cf-title">Billing Address</div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="cf-radio-btns address-rb">
+                                <div class="cfr-item">
+                                    <input type="radio" name="pm" id="one" value="one" onclick="fill()"
+                                           checked="true">
+                                    <label for="one">Use my regular address</label>
+                                </div>
+                                <div class="cfr-item">
+                                    <input type="radio" name="pm" id="two" value="two" onclick="fill()">
+                                    <label for="two">Use a different address</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row address-inputs">
+                        <div class="col-md-12">
+                            <input type="text" placeholder="Name" id="name">
+                            <input type="text" placeholder="Email" id="email" disabled>
+                            <input type="text" placeholder="Address" id="address">
+                            <input type="text" placeholder="City" id="city">
+                            <input type="text" placeholder="State" id="state">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" placeholder="PINCODE" id="pincode">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" placeholder="Phone no." id="phone">
+                        </div>
+                    </div>
+                    <!-- <div class="cf-title">Delivery Info</div> -->
+                    <!-- </div><br> -->
+                    <!-- <div class="cf-title">Gift Wrap</div>
+                    <label class="switch col-10">
+                        <input type="checkbox" id="giftWrap" name="giftWrap" onclick="GIF()">
+                        <span class="slider round">Add Gift Wrap (Rs.50 will be added)</span>
+                      </label>
+                      <div class="col-10 text-danger">
+                            Gift wrapping charges will not be refunded in case of return
+                      </div> -->
+                    <br>
+                    <div class="cf-radio-btns">
+                        <div class="cf-title">Payment</div>
+                        <div class="col-10">
+                            <div class="text">Delivery - Free on all orders</div>
+                            <br>
+                            <div class="cf-radio-btns">
+                                <div class="cfr-item">
+                                    <input type="radio" name="payment" id="razorpay" value="razorpay" checked="true"
+                                           onclick="PAY()">
+                                    <label for="razorpay" class="text-info">Credit Cards, Depit Cards, Netbanking,
+                                        UPI &nbsp; &nbsp;<img
+                                                src="https://upload.wikimedia.org/wikipedia/en/8/89/Razorpay_logo.svg"
+                                                style="width: auto; max-height: 20px;" alt=""></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="cf-radio-btns">
+                                <div class="cfr-item">
+                                    <input type="radio" name="payment" id="cod" value="cod" onclick="PAY()">
+                                    <label for="cod" class="text-danger">Cash on Delivery (Extra Rs. 50 will be
+                                        added)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" onclick="placeOrder()" id="place" class="site-btn submit-order-btn">PLACE ORDER</a>
+                </form>
+            </div>
+            <div class="col-lg-4 order-1 order-lg-2">
+                <form class="promo-code-form" method="GET" onsubmit="promo()">
+                    <input type="text" class="text-uppercase" placeholder="Enter promo code" id="promo_code"
+                           required>
+                    <button type="button" onclick="promo()">Submit</button>
+                </form>
+                <div class="alert alert-success alert-dismissible" id="suc" style="display: none;">
+                    PROMO CODE APPLIED SUCCESSFULLY.
+                </div>
+                <div class="alert alert-danger alert-dismissible" id="error" style="display: none;">
+                    *Invalid Promo Code
+                </div>
+
+                <div class="checkout-cart">
+                    <h3>Your Cart</h3>
+                    <ul class="product-list" id="product-cart">
+
+                    </ul>
+                    <ul class="price-list">
+                        <li>Total<span id="total">Rs.0</span></li>
+                        <li>Shipping<span id="shipping">Rs.0</span></li>
+                        <li class="text-info" style="display: none;" id="promo1">Promo Code<span
+                                id="promo">-Rs.0</span></li>
+                        <li style="display:none;" id="cod1">Cash on Delivery<span>Rs.50</span></li>
+                        <li style="display:none;" id="giftWrap1">Gift Wrap<span>Rs.50</span></li>
+                        <li>
+                            <hr>
+                        </li>
+                        <li>
+                            <h6>Net Total<span id="netTotal">Rs.0</span></h6>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- checkout section end -->
+<!-- Footer section -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="footer-widget about-widget">
+                    <h2>About</h2>
+                    <p>At Urban Thrift, we aim to make buying sustainable fashion convenient and affordable. With
+                        multiple quality inspections, product assurance and stress on buying comfort, you can be
+                        confident about buying from Thrift stores across the country!</p>
+                    <img src="img/cards.png" alt="" style="width:auto; height:10%">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="footer-widget about-widget">
+                    <h2>Info</h2>
+                    <ul>
+                        <li><a href="./about_us.html">About Us</a></li>
+                        <li><a href="./FAQs.html">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer section end -->
+<script>
+    let promo_code = null;
+    let storedData = localStorage.getItem("cart");
+
+    let items = JSON.parse(storedData);
+    for (let i = 0; i < items.length; i++) {
+        db.collection("products").doc(items[i]).get().then(function (doc) {
+            if (doc.data().quantity < 1) {
+                alert("One or more products in your cart are not available anymore! Please refresh the page to continue");
+                if (items.indexOf(doc.id) != -1)
+                    items.splice(items.indexOf(doc.id), 1);
+                localStorage.setItem("cart", JSON.stringify(items));
+                window.location.reload();
+            }
+        });
+    }
+    let uid = null;
+    auth.onAuthStateChanged(function (user) {
+        if (user) {
+            document.getElementById("profile").style.display = "block";
+
+            document.getElementById("login").style.visibility = "hidden";
+            func(user.uid);
+            uid = user.uid;
+            document.getElementById("signUp").style.visibility = "hidden";
+        } else {
+
+            document.getElementById("profile").style.display = "none";
+            ;
+            alert("You need to be sign in to place an order!");
+            window.location.replace("./SignIn.html?redirect=checkout");
+            document.getElementById("login").style.visibility = "visible";
+            document.getElementById("signUp").style.visibility = "visible";
+        }
+    });
+    let pay = 0, gif = 0, flag1 = 0, flag2 = 0;
+
+    function PAY() {
+        pay = document.querySelector('input[name="payment"]:checked').value == "cod" ? 1 : 0;
+        let total = netTotal;
+        if (pay == 1) {
+            flag1 = 1;
+            total += 50;
+            document.getElementById("cod1").style.display = "block";
+        } else {
+            if (flag1 == 1) {
+                total -= 50;
+                flag1 = 0;
+            }
+            document.getElementById("cod1").style.display = "none";
+        }
+        document.getElementById("netTotal").innerHTML = "Rs." + total;
+        netTotal = total;
+    }
+
+    function GIF() {
+        gif = document.querySelector('input[name="giftWrap"]:checked') ? 1 : 0;
+        let total = netTotal;
+        if (gif == 1) {
+            flag2 = 1;
+            total += 50
+            document.getElementById("giftWrap1").style.display = "block";
+        } else {
+            if (flag2 == 1) {
+                total -= 50;
+                flag2 = 0;
+            }
+            document.getElementById("giftWrap1").style.display = "none";
+        }
+        document.getElementById("netTotal").innerHTML = "Rs." + total;
+        netTotal = total;
+    }
+
+    let name1 = document.getElementById("name");
+    let pin = document.getElementById("pincode");
+    let city = document.getElementById("city");
+    let state = document.getElementById("state");
+    let address = document.getElementById("address");
+    let mobile = document.getElementById("phone");
+    let email = document.getElementById("email");
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1;
+
+    let yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    let today = dd + '/' + mm + '/' + yyyy;
+
+    function func(uid) {
+        db.collection("users").doc(uid).get().then(function (doc) {
+
+            name1.value = doc.data().name;
+            address.value = doc.data().address.address;
+            city.value = doc.data().address.city;
+            state.value = doc.data().address.state;
+            mobile.value = doc.data().mobile;
+            pin.value = doc.data().address.pincode;
+            email.value = doc.data().email;
+        });
+    }
+
+    function fill() {
+        if (document.querySelector('input[name="pm"]:checked').value == "one") {
+            db.collection("users").doc(localStorage.getItem("current_user")).get().then(function (doc) {
+                name1.value = doc.data().name;
+                address.value = doc.data().address.address;
+                city.value = doc.data().address.city;
+                state.value = doc.data().address.state;
+                mobile.value = doc.data().mobile;
+                pin.value = doc.data().address.pincode;
+                email.value = doc.data().email;
+            });
+        } else {
+            name1.value = "";
+            address.value = "";
+            city.value = "";
+            state.value = "";
+            mobile.value = "";
+            pin.value = "";
+        }
+    }
+
+    let total = 0, netTotal = 0, shipping = 0, discount = 0;
+    if (items.length == 0) {
+        alert("There are no items in your cart!");
+        window.location.replace("./home.html")
+    }
+    let html2 = ``;
+    let cart = document.getElementById("product-cart");
+    for (let i = 0; i < items.length; i++) {
+        db.collection("products").doc(items[i]).get().then(function (doc) {
+
+            total = total + doc.data().price;
+            document.getElementById("total").innerText = "Rs." + total;
+            html2 += `<tr class="item"><td><img src="${doc.data().image[0]}" style="max-height: 100px; width: auto;">&nbsp;&nbsp;${doc.data().name}</td> <td>Rs.${doc.data().price}</td> </tr>`
+
+            let li = document.createElement("li");
+            let div = document.createElement("div");
+            div.classList.add("pl-thumb");
+            let img = document.createElement("img");
+            img.setAttribute("src", doc.data().image[0]);
+            div.appendChild(img);
+            let h6 = document.createElement("h6");
+            h6.innerHTML = doc.data().name;
+            let p = document.createElement("p");
+            p.innerHTML = "Rs." + doc.data().price;
+            li.appendChild(div);
+            li.appendChild(h6);
+            li.appendChild(p);
+            cart.appendChild(li);
+        }).then(function () {
+            if (total > 999) {
+                shipping = 0;
+                document.getElementById("shipping").innerHTML = "Rs." + shipping;
+            } else {
+                shipping = 0;
+                document.getElementById("shipping").innerHTML = "Rs." + shipping;
+            }
+            netTotal = total + shipping - discount;
+            document.getElementById("netTotal").innerHTML = "Rs." + netTotal;
+        });
+    }
+
+    function promo() {
+        let error = document.getElementById("error");
+        let suc = document.getElementById("suc");
+        promo_code = document.getElementById("promo_code").value.toString().toUpperCase();
+        if (promo_code.length > 0) {
+            db.collection("promos").doc(promo_code).get()
+                .then(function (doc) {
+                    if (doc.data() != null) {
+                        if (doc.data().availed.includes(auth.currentUser.uid) || new Date() > doc.data().valid_till.toDate() || doc.data().availed.length >= doc.data().max_avails) {
+                            error.style.display = "block";
+                            error.innerHTML = "This promo code is not valid anymore!"
+                        } else {
+                            document.getElementById("promo1").style.display = "block";
+                            suc.style.display = "block";
+                            suc.innerHTML = "PROMO CODE APPLIED SUCCESSFULLY.<br> ORDER NOW TO GET FLAT " + doc.data().discount_percentage + "% DISCOUNT"
+                            discount = total * doc.data().discount_percentage / 100;
+                            if (discount > doc.data().max_amount)
+                                discount = doc.data().max_amount;
+                            document.getElementById("promo").innerHTML = "Rs." + discount;
+                            netTotal = total + shipping - discount;
+                            document.getElementById("netTotal").innerHTML = "Rs." + netTotal;
+                        }
+                    } else {
+                        suc.style.display = "none";
+                        error.style.display = "block";
+                        promo_code = null;
+                        document.getElementById("promo1").style.display = "none";
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        } else {
+            suc.style.display = "none";
+            error.style.display = "block";
+            promo_code = null;
+        }
+        setTimeout(function () {
+            error.style.display = "none";
+        }, 3000);
+    }
+
+    let html;
+    let html3 = ``;
+    //  <br> <tfoot> <tr class="heading"> <td>Payment Details</td> <td></td> </tr> <tr class="item"> <td> Payment Mode </td> <td> Razorpay </td> </tr> <tr class="item"> <td> Payment Id </td> <td> ${payment_id} </td> </tr> </tfoot> </table> </div>`;
+    let gift1;
+
+    function placeOrder() {
+        document.getElementById("place").innerHTML = "<i class='fa fa-spinner fa-spin '></i> Processing Order";
+        document.getElementById("place").disabled = true;
+        setTimeout(function () {
+            document.getElementById("place").innerHTML = "Place Order";
+            document.getElementById("place").disabled = false;
+        }, 6000)
+        if (gif == 1) {
+            gift1 = true;
+            html3 += `<tr class="item"> <td style="text-align: right;">Gift Wrap:</td> <td> Rs.50</td> </tr>`;
+        } else {
+            gift1 = false;
+        }
+        if (pay == 1) {
+            cod1 = true;
+            html3 += `<tr class="item"> <td style="text-align: right;">Cash On Delivery:</td><td> Rs.50</td> </tr>`;
+        } else {
+            cod1 = false;
+        }
+        let dbRef = db.collection("orders").doc()
+        let id = dbRef.id;
+
+        html3 += `<tr class="item"> <td style="text-align: right;">Shipping:</td> <td> Rs.${shipping}</td> </tr>`;
+        html3 += `<tr class="item"> <td class="text-info" style="text-align: right;">Promo Discount:</td> <td> Rs.${discount}</td> </tr>`;
+        html3 += `<tr class="total"> <td style="text-align: right;">Total:</td> <td> Rs.${netTotal}</td> </tr>`;
+        html = `<style> .invoice-box { max-width: 800px; margin: auto; padding: 30px; background-color: #ffffff; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0, 0, 0, .15); font-size: 16px; line-height: 24px; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #555; } .invoice-box table { width: 100%; line-height: inherit; text-align: left; } .invoice-box table td { padding: 5px; vertical-align: top; } .invoice-box table tr td:nth-child(2) { text-align: right; } .invoice-box table tr.top table td { padding-bottom: 20px; } .invoice-box table tr.top table td.title { font-size: 45px; line-height: 45px; color: #333; } .invoice-box table tr.information table td { padding-bottom: 40px; } .invoice-box table tr.heading td { background: #eee; border-bottom: 1px solid #ddd; font-weight: bold; } .invoice-box table tr.details td { padding-bottom: 20px; } .invoice-box table tr.item td { border-bottom: 1px solid #eee; } .invoice-box table tr.item.last td { border-bottom: none; } .invoice-box table tr.total td:nth-child(2) { border-top: 2px solid #eee; font-weight: bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top table td { width: 100%; display: block; text-align: center; } .invoice-box table tr.information table td { width: 100%; display: block; text-align: center; } } /** RTL **/ .rtl { direction: rtl; font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; } .rtl table { text-align: right; } .rtl table tr td:nth-child(2) { text-align: left; } </style> <div class="invoice-box"> <table cellpadding="0" cellspacing="0"> <tr class="top"> <td colspan="2"> <table> <tr> <td class="title"><img src="https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/favicon%20(1).png?alt=media&token=e269b51a-281e-4d74-8af1-61204d4c2324" style="width:100%; max-width:300px;"></td> <td><h3>Invoice</h3>Order Id #${id}<br> Order Date: ${today}<br></td> </tr> </table> </td> </tr> <tr class="information"> <td colspan="2"> <table> <tr> <td>Jaipur House Colony<br> Agra, Uttar Pradesh<br> 282010<br> GSTIN : 09GEAPD5512Q1Z8</td> <td>${name1.value}<br> ${address.value}<br>${city.value}, ${state.value}<br>${pincode.value}</td> </tr> </table> </td> </tr> <tr class="heading"> <td>Item</td> <td>Price</td> </tr>` + html2 + `<tr><td><br></td><td><br></td></tr>` + html3;
+        let obj = {address: address.value, city: city.value, state: state.value, pincode: pin.value};
+        dbRef.set({
+            name: name1.value,
+            mobile: mobile.value,
+            address: obj,
+            uid: uid,
+            email: email.value,
+            gift_wrap: gift1,
+            shipping: shipping,
+            cash_on_delivery: cod1,
+            amount: netTotal,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            items: items
+        }).then(function () {
+            let orderId = id;
+            if (document.querySelector('input[name="payment"]:checked').value == "razorpay") {
+                db.collection("orders").doc(id).get().then(function (doc) {
+                    let order = doc.data().order;
+                    if (order != null)
+                        orderId = order.id;
+                })
+                let options = {
+                    "key": "rzp_live_6D9BNSkVnQ8cfK",
+                    "amount": netTotal * 100,
+                    "currency": "INR",
+                    "name": "Urban-Thrift",
+                    "description": "Order Id - " + id,
+                    // "order_id":orderId,
+                    "image": "img/favicon.ico",
+                    "handler": function (response) {
+                        savetoDB(id, response);
+                        $('#myModal').modal();
+                    },
+                    "prefill": {
+                        "name": name1.value,
+                        "contact": mobile.value,
+                        "email": email.value
+                    },
+                    "notes": {
+                        "address": "note value"
+                    },
+                    "theme": {
+                        "color": "#000000"
+                    },
+                    "modal": {
+                        "ondismiss": function () {
+                            db.collection("orders").doc(id).delete().then(function () {
+                                console.log("Document successfully deleted!");
+                            }).catch(function (error) {
+                                console.error("Error removing document: ", error);
+                            });
+                        }
+                    }
+                }
+                let propay = new Razorpay(options);
+                propay.open();
+            } else if (document.querySelector('input[name="payment"]:checked').value == "cod") {
+                savetoDB(id, "cod");
+            }
+        });
+    }
+
+    function savetoDB(id, response) {
+        let storedData = localStorage.getItem("cart");
+        items = JSON.parse(storedData);
+        for (let i = 0; i < items.length; i++) {
+            db.collection("products").doc(items[i]).get()
+                .then(function (doc) {
+                    quantity = doc.data().quantity - 1;
+                    db.collection("products").doc(doc.id).update({
+                        quantity: quantity
+                    }).then(function () {
+                        if (quantity == 0) {
+                            db.collection("sellers").doc(doc.data().store_id).update({
+                                available_products: firebase.firestore.FieldValue.arrayRemove(doc.id),
+                            })
+                        }
+                    });
+                });
+        }
+        if (promo_code != null) {
+            firebase.analytics().logEvent('promo_applied', {user: auth.currentUser.uid, orderId: id});
+            db.collection("promos").doc(promo_code).update({
+                availed: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.uid)
+            })
+        }
+        if (response != "cod" && response != null) {
+            db.collection("orders").doc(id).update({
+                pay_status: "paid",
+                order_status: "Order Placed",
+                payment_method: "razorpay",
+                discount: discount,
+                payment_id: response.razorpay_payment_id
+            }).then(function () {
+                db.collection('payments').doc(id).set({
+                    payment_id: response.razorpay_payment_id,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    user: auth.currentUser.uid,
+                    amount: netTotal
+                }).then(function () {
+                    html += `<tfoot><tr class="heading"><td>Payment Details</td><td></td></tr><tr class="item"><td>Payment Mode</td><td>Razorpay</td></tr><tr class="item"><td>Payment Status</td><td>Paid</td></tr><tr class="item"><td>Payment Id</td><td>${response.razorpay_payment_id}</td></tr></tfoot>`
+                    console.log(id, html);
+                    onSuccessful(id, html);
+                });
+            });
+        } else if (response == "cod") {
+            db.collection("orders").doc(id).update({
+                pay_status: "unpaid",
+                order_status: "Order Placed",
+                payment_method: "cod",
+                discount: discount
+            }).then(function () {
+                html += `<tfoot><tr class="heading"><td>Payment Details</td><td></td></tr><tr class="item"><td>Payment Mode</td><td>Cash on Delivery</td></tr><tr class="item"><td>Payment Status</td><td>Unpaid</td></tr></tfoot>`
+                onSuccessful(id, html);
+            });
+        }
+    }
+
+    function onSuccessful(id, html) {
+        db.collection("mail").doc(id).set({
+            to: email.value,
+            message: {
+                subject: `Order Placed Successfully - Order Id #${id}`,
+                html: `<h1>Hello ${name1.value},</h1><p>Your order with ORDER ID - <b>#${id}</b> is successfull. Here is the invoice for your purchase. </p>` + html + `<br><br>To track your order, click <a href="https://urbanthrift.in/track_order.html?order_id=${id}">here</a>. You can also access this invoice <a href="https://urbanthrift.in/view_invoice.html?InvoiceId=${id}">here</a>`
+            }
+        }).then(function () {
+            sellerMail(id);
+        });
+    }
+
+    let i1 = 0;
+
+    function sellerMail(id) {
+        if (i1 < items.length) {
+            db.collection("products").doc(items[i1]).get()
+                .then(function (doc) {
+                    db.collection("sellers").doc(doc.data().store_id).update({
+                        pending_orders: firebase.firestore.FieldValue.arrayUnion({
+                            "order_id": id,
+                            "product_id": items[i1]
+                        }),
+                        customers: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.uid),
+                    });
+                    db.collection("users").doc(auth.currentUser.uid).update({
+                        orders: firebase.firestore.FieldValue.arrayUnion(id),
+                    });
+                    db.collection("sellers").doc(doc.data().store_id).get()
+                        .then(function (snap) {
+                            db.collection("mail").doc(id + "seller" + i1).set({
+                                to: snap.data().email,
+                                bcc: "info@urbanthrift.in",
+                                message: {
+                                    subject: `New Order - Order Id #${id}`,
+                                    html: `<style> .invoice-box { max-width: 800px; margin: auto; padding: 30px; background-color: #ffffff; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0, 0, 0, .15); font-size: 16px; line-height: 24px; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #555; } .invoice-box table { width: 100%; line-height: inherit; text-align: left; } .invoice-box table td { padding: 5px; vertical-align: top; } .invoice-box table tr td:nth-child(2) { text-align: right; } .invoice-box table tr.top table td { padding-bottom: 20px; } .invoice-box table tr.top table td.title { font-size: 45px; line-height: 45px; color: #333; } .invoice-box table tr.information table td { padding-bottom: 40px; } .invoice-box table tr.heading td { background: #eee; border-bottom: 1px solid #ddd; font-weight: bold; } .invoice-box table tr.details td { padding-bottom: 20px; } .invoice-box table tr.item td { border-bottom: 1px solid #eee; } .invoice-box table tr.item.last td { border-bottom: none; } .invoice-box table tr.total td:nth-child(2) { border-top: 2px solid #eee; font-weight: bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top table td { width: 100%; display: block; text-align: center; } .invoice-box table tr.information table td { width: 100%; display: block; text-align: center; } } /** RTL **/ .rtl { direction: rtl; font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; } .rtl table { text-align: right; } .rtl table tr td:nth-child(2) { text-align: left; } </style> <div class="invoice-box"> <table cellpadding="0" cellspacing="0"> <tr class="top"> <td colspan="2"> <table> <tr> <td class="title"><img src="https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/favicon%20(1).png?alt=media&token=e269b51a-281e-4d74-8af1-61204d4c2324" style="width:100%; max-width:300px;"></td> <td><h3>New Order</h3> Order Id : #${id}<br> Order Date: ${today}<br></td> </tr> </table> </td> </tr> <tr class="information"> <td colspan="2"> <table> <tr> <td><h4>Delivery Address :</h4>${name1.value}<br> ${address.value},<br> ${city.value}, ${state.value}<br> ${pincode.value}<br> Contact No.: ${mobile.value}<br> Email : ${email.value} </td> <td> ${snap.data().address.address}<br> ${snap.data().address.city}, ${snap.data().address.state}<br> ${snap.data().address.pincode}<br> GSTIN : ${snap.data().gstin} </td> </tr> </table> </td> </tr> <tr class="heading"> <td>Item</td> <td>Price</td> </tr><tr class="item"> <td><img src="${doc.data().image[0]}" style="max-height: 100px; width: auto;">&nbsp;&nbsp;${doc.data().name}</td> <td>Rs.${doc.data().price}</td> </tr> <tr><td><br></td><td><br></td></tr> <tr class="item"> <td style="text-align: right;">Gift Wrap:</td> <td> ${gift1 ? "Yes" : "No"}</td> </tr> <br> </table> </div>`
+                                }
+                            });
+                        }).then(function () {
+                        i1 += 1;
+                        sellerMail(id);
+                    });
+                });
+        } else {
+            localStorage.getItem("cart");
+            localStorage.removeItem("cart");
+            let arr = JSON.stringify([]);
+            localStorage.setItem("cart", arr);
+            alert("Order Placed Successfully!");
+            setTimeout(function () {
+                window.location.replace("./home.html");
+            }, 3000);
+        }
+    }
+</script>
+<div id="snackbar"></div>
+<!--====== Javascripts & Jquery ======-->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/978e5c8e46.js" crossorigin="anonymous"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<!-- Footer section end -->
+</body>
+
+</html>
