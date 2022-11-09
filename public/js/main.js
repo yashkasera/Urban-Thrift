@@ -111,8 +111,7 @@ function getProductHtml(product) {
     let div3 = document.createElement('div');
     div3.classList.add("pi-pic");
     let img = document.createElement('img');
-    // img.setAttribute('src', product.image[0]);
-    img.setAttribute('src', "https://via.placeholder.com/300x300/.png");
+    img.setAttribute('src', product.image[0]);
     img.onclick = function () {
         productPage(product)
     }
