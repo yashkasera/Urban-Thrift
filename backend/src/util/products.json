@@ -653,15 +653,7 @@
     "product_condition": "5",
     "size_description": "",
     "name": "Girl Squad Top",
-    "keywords": [
-      "Pink",
-      "S",
-      "Topwear",
-      "Cotton ",
-      "girl",
-      "squad",
-      "top"
-    ],
+    "keywords": ["Pink", "S", "Topwear", "Cotton ", "girl", "squad", "top"],
     "material": "Cotton ",
     "brand": "Louis Vuitton",
     "size": "S",
@@ -959,14 +951,7 @@
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2F8sW3urLVNXFkBuO9IXiY%2F4?alt=media&token=b6b7f7ba-3b6f-4647-bba9-2b1dcccca273"
     ],
     "size_description": "Fits a size small",
-    "keywords": [
-      "White",
-      "S",
-      "Topwear",
-      "Cotton",
-      "Plaid",
-      "Shirt"
-    ],
+    "keywords": ["White", "S", "Topwear", "Cotton", "Plaid", "Shirt"],
     "size": "S",
     "material": "Cotton",
     "watchers": 91,
@@ -1063,15 +1048,7 @@
     "material": "Cotton",
     "product_condition": "5",
     "brand": "Calvin Klein",
-    "keywords": [
-      "Blue",
-      "S",
-      "Dresses",
-      "Cotton",
-      "Floral",
-      "print",
-      "dress"
-    ],
+    "keywords": ["Blue", "S", "Dresses", "Cotton", "Floral", "print", "dress"],
     "size": "S",
     "description": "This dress is unused and looks really pretty.        ",
     "name": "Floral print dress",
@@ -1291,14 +1268,7 @@
     "name": "Necklace ",
     "color": "Silver",
     "size_description": "",
-    "keywords": [
-      "Silver",
-      "",
-      "Accessories",
-      "-",
-      "Necklace",
-      ""
-    ],
+    "keywords": ["Silver", "", "Accessories", "-", "Necklace", ""],
     "product_condition": "4",
     "description": "Silver necklace. Perfect for black outfits.        ",
     "watchers": 2,
@@ -1645,14 +1615,7 @@
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FFrzgyPni0ChBFq3qkB6J%2F0?alt=media&token=1af8c537-41bd-4008-942e-dd4e069e6f0d",
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FFrzgyPni0ChBFq3qkB6J%2F1?alt=media&token=0f883ca4-9489-4393-b8fd-51fc9d1f8416"
     ],
-    "keywords": [
-      "Blue",
-      "",
-      "Accessories",
-      "Plastic ",
-      "Coloured",
-      "hoops"
-    ],
+    "keywords": ["Blue", "", "Accessories", "Plastic ", "Coloured", "hoops"],
     "description": "Two Pair of coloured hoops. Colour- pink and blue. ",
     "size_description": "",
     "product_condition": "5",
@@ -1698,14 +1661,7 @@
     ],
     "description": "Rust Top from People with elastic Band to cinch waist, no defects",
     "size": "S",
-    "keywords": [
-      "Red",
-      "S",
-      "Topwear",
-      "Cotton",
-      "Rust",
-      "Top"
-    ],
+    "keywords": ["Red", "S", "Topwear", "Cotton", "Rust", "Top"],
     "color": "Red",
     "material": "Cotton",
     "name": "Rust Top",
@@ -1902,15 +1858,7 @@
     "product_condition": "5",
     "material": "Jersey",
     "name": "Verbena Spaghetti Top",
-    "keywords": [
-      "",
-      "S",
-      "Topwear",
-      "Jersey",
-      "Verbena",
-      "Spaghetti",
-      "Top"
-    ],
+    "keywords": ["", "S", "Topwear", "Jersey", "Verbena", "Spaghetti", "Top"],
     "description": "Verbena spaghetti top with additional support layer attached",
     "image": [
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FI5acCsZ0cnhN4MGZmsxB%2F2?alt=media&token=a139d7cf-8480-40f1-a1e7-4f1aa4683f30",
@@ -2146,13 +2094,7 @@
     "product_condition": "5",
     "size": "L",
     "name": "Shrug",
-    "keywords": [
-      "Yellow",
-      "L",
-      "Overalls",
-      "Woolen",
-      "Shrug"
-    ],
+    "keywords": ["Yellow", "L", "Overalls", "Woolen", "Shrug"],
     "color": "Yellow",
     "watchers": 85,
     "min_bid": 850,
@@ -2826,15 +2768,7 @@
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FNHaeu3d5dfi4SjC6yr8r%2F0?alt=media&token=d52cfbe3-0f1c-4b82-8196-1d029972726a",
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FNHaeu3d5dfi4SjC6yr8r%2F4?alt=media&token=59a1ef06-5f0b-4e25-8bbe-8dc4be9fa795"
     ],
-    "keywords": [
-      "",
-      "M",
-      "Topwear",
-      "Denim",
-      "Statement",
-      "Denim",
-      "Jacket"
-    ],
+    "keywords": ["", "M", "Topwear", "Denim", "Statement", "Denim", "Jacket"],
     "watchers": 23,
     "min_bid": 600,
     "category": "Topwear",
@@ -2940,15 +2874,7 @@
     "brand": "H&M",
     "size": "M",
     "product_condition": "5",
-    "keywords": [
-      "Blue",
-      "M",
-      "Topwear",
-      "Cotton",
-      "Electric",
-      "Blue",
-      "Polo"
-    ],
+    "keywords": ["Blue", "M", "Topwear", "Cotton", "Electric", "Blue", "Polo"],
     "name": "Electric Blue Polo",
     "material": "Cotton",
     "color": "Blue",
@@ -3239,13 +3165,7 @@
     "brand": "Louis Vuitton",
     "size_description": "",
     "description": "Oversized warm coat. Gives cozy vibes.              ",
-    "keywords": [
-      "Blue",
-      "",
-      "Overalls",
-      "Warm",
-      "Coat"
-    ],
+    "keywords": ["Blue", "", "Overalls", "Warm", "Coat"],
     "image": [
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FRILe2xooFdhDgX3Qs2ll%2F0?alt=media&token=94eaaf42-4d31-4a48-b019-d6fc9aa3a288",
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FRILe2xooFdhDgX3Qs2ll%2F1?alt=media&token=3188a760-f8a7-456e-9e1d-324597aea164"
@@ -3623,14 +3543,7 @@
     "color": "Black",
     "size_description": "",
     "description": "Embroidered mesh top. Style it with different inner wear",
-    "keywords": [
-      "Black",
-      "S",
-      "Topwear",
-      "See through ",
-      "Mesh",
-      "top"
-    ],
+    "keywords": ["Black", "S", "Topwear", "See through ", "Mesh", "top"],
     "brand": "Adidas",
     "material": "See through ",
     "size": "S",
@@ -3790,14 +3703,7 @@
     "material": "Warm",
     "product_condition": "3",
     "name": "Coat",
-    "keywords": [
-      "Jackets",
-      "Gray",
-      "L",
-      "Overalls",
-      "Warm",
-      "Coat"
-    ],
+    "keywords": ["Jackets", "Gray", "L", "Overalls", "Warm", "Coat"],
     "color": "Gray",
     "size": "L",
     "description": "Its a warm coat. The material is reaping warm and nice",
@@ -3808,15 +3714,7 @@
     "added_by": "636bee13ea18b32f4a9da3d1"
   },
   {
-    "keywords": [
-      "Red",
-      "M",
-      "Topwear",
-      "Wool",
-      "Red",
-      "Cardigan-",
-      "H&M"
-    ],
+    "keywords": ["Red", "M", "Topwear", "Wool", "Red", "Cardigan-", "H&M"],
     "size": "M",
     "description": "Cardigan by H&M, very comfortable and nice to wear.",
     "size_description": "M",
@@ -3912,14 +3810,7 @@
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FX8poIyfQKmaG1EvEQ84l%2F1?alt=media&token=1086c6ef-a5aa-43fd-8f10-9daa9ae853bb",
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FX8poIyfQKmaG1EvEQ84l%2F0?alt=media&token=c78a96ac-586e-430a-86a4-840bd84ec4c3"
     ],
-    "keywords": [
-      "",
-      "XL",
-      "Dresses",
-      "Light Corduroy",
-      "Pretty",
-      "Date"
-    ],
+    "keywords": ["", "XL", "Dresses", "Light Corduroy", "Pretty", "Date"],
     "product_condition": "5",
     "color": "",
     "watchers": 76,
@@ -4185,14 +4076,7 @@
     "name": "Wollen Top",
     "material": "Wollen Mix",
     "product_condition": "5",
-    "keywords": [
-      "Black",
-      "S",
-      "Topwear",
-      "Wollen Mix",
-      "Wollen",
-      "Top"
-    ],
+    "keywords": ["Black", "S", "Topwear", "Wollen Mix", "Wollen", "Top"],
     "description": "The very classic wollen top with the most beautiful details (collar and pocket).\nShoes and pants not included*",
     "color": "Black",
     "image": [
@@ -4299,15 +4183,7 @@
     ],
     "color": "Black",
     "product_condition": "5",
-    "keywords": [
-      "Black",
-      "XS",
-      "Topwear",
-      "linen",
-      "Asymmetric",
-      "top",
-      ""
-    ],
+    "keywords": ["Black", "XS", "Topwear", "linen", "Asymmetric", "top", ""],
     "name": "Asymmetric Top ",
     "description": "asymmetric top from Zara, has been worn once and is in perfect condition.",
     "brand": "Hackett",
@@ -4462,15 +4338,7 @@
     "brand": "H&M",
     "product_condition": "4",
     "material": "Wool",
-    "keywords": [
-      "Gray",
-      "M",
-      "Topwear",
-      "Wool",
-      "Knitted",
-      "sweater",
-      ""
-    ],
+    "keywords": ["Gray", "M", "Topwear", "Wool", "Knitted", "sweater", ""],
     "watchers": 53,
     "min_bid": 450,
     "category": "Topwear",
@@ -4770,15 +4638,7 @@
   },
   {
     "size_description": "Can fit both M/L.\n",
-    "keywords": [
-      "",
-      "M",
-      "Dresses",
-      "Mix",
-      "The",
-      "Cocktail",
-      "Green"
-    ],
+    "keywords": ["", "M", "Dresses", "Mix", "The", "Cocktail", "Green"],
     "material": "Mix",
     "image": [
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2Fej6uBrMiuXUa2d9RTGFX%2F0?alt=media&token=05397f87-3ec4-4d50-a50f-2716fc526d6c",
@@ -5817,14 +5677,7 @@
     "brand": "Hackett",
     "material": "Bag",
     "size_description": "",
-    "keywords": [
-      "",
-      "",
-      "Accessories",
-      "Bag",
-      "Vintage",
-      "handbag"
-    ],
+    "keywords": ["", "", "Accessories", "Bag", "Vintage", "handbag"],
     "product_condition": "4",
     "name": "Vintage handbag",
     "color": "",
@@ -5941,15 +5794,7 @@
     "size_description": "can fit both a size XS and S",
     "name": "Patchwork Crop Top",
     "product_condition": "5",
-    "keywords": [
-      "",
-      "S",
-      "Topwear",
-      "Cotton",
-      "Patchwork",
-      "Crop",
-      "Top"
-    ],
+    "keywords": ["", "S", "Topwear", "Cotton", "Patchwork", "Crop", "Top"],
     "image": [
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FpjyAspuTy91yUOsG084i%2F0?alt=media&token=ff70e387-e52f-4a77-8e50-23d74d6508ed",
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FpjyAspuTy91yUOsG084i%2F2?alt=media&token=90c22a2d-c88a-45e1-8cb8-807469860f33",
@@ -6138,14 +5983,7 @@
     "brand": "Louis Vuitton"
   },
   {
-    "keywords": [
-      "White",
-      "M",
-      "Topwear",
-      "Woollen ",
-      "Warm",
-      "sweater"
-    ],
+    "keywords": ["White", "M", "Topwear", "Woollen ", "Warm", "sweater"],
     "name": "Warm sweater",
     "color": "White",
     "material": "Woollen ",
@@ -6195,14 +6033,7 @@
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FqT6qX3xumpxjXR9nToP1%2F0?alt=media&token=32131f14-fb3d-43ad-a150-5861536970ea",
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FqT6qX3xumpxjXR9nToP1%2F1?alt=media&token=7407f9c0-a185-42bb-994a-b4f56096249d"
     ],
-    "keywords": [
-      "",
-      "",
-      "Accessories",
-      "-",
-      "Earrings",
-      ""
-    ],
+    "keywords": ["", "", "Accessories", "-", "Earrings", ""],
     "size": "",
     "product_condition": "4",
     "color": "",
@@ -6445,14 +6276,7 @@
     ],
     "description": "Warm sweater. Really comfortable and cute.        ",
     "product_condition": "4",
-    "keywords": [
-      "",
-      "M",
-      "Topwear",
-      "Warm",
-      "Sweater",
-      ""
-    ],
+    "keywords": ["", "M", "Topwear", "Warm", "Sweater", ""],
     "brand": "Louis Vuitton",
     "watchers": 17,
     "min_bid": 600,
@@ -6462,13 +6286,7 @@
   },
   {
     "description": "Oversized tshirt from hues. Really warm and soft. ",
-    "keywords": [
-      "Blue",
-      "XL",
-      "Topwear",
-      "Cotton",
-      "T-shirt"
-    ],
+    "keywords": ["Blue", "XL", "Topwear", "Cotton", "T-shirt"],
     "color": "Blue",
     "product_condition": "4",
     "size": "XL",
@@ -6679,14 +6497,7 @@
     "product_condition": "5",
     "color": "Pink",
     "description": "The Cande Set has a cute tube top with matching pink shorts! Fits well and looks cute!",
-    "keywords": [
-      "Pink",
-      "M",
-      "Overalls",
-      "Cotton and Ribbed",
-      "Cande",
-      "Set"
-    ],
+    "keywords": ["Pink", "M", "Overalls", "Cotton and Ribbed", "Cande", "Set"],
     "brand": "H&M",
     "image": [
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FszEskWx9LrTtxsTAGHxH%2F0?alt=media&token=59cd7133-d7c4-469d-8f06-a96756eb1298",
@@ -6742,14 +6553,7 @@
     "material": "Plastic ",
     "color": "Red",
     "size_description": "",
-    "keywords": [
-      "Red",
-      "",
-      "Accessories",
-      "Plastic ",
-      "Earrings",
-      ""
-    ],
+    "keywords": ["Red", "", "Accessories", "Plastic ", "Earrings", ""],
     "brand": "Calvin Klein",
     "image": [
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FtPBmZZQyS9SpulfMm99A%2F1?alt=media&token=ce520e82-6b0a-4653-919a-bd27d4cc5af5",
@@ -7049,15 +6853,7 @@
       "https://firebasestorage.googleapis.com/v0/b/thrift-it-6292f.appspot.com/o/products%2FvPA1xzeTAiCsVQBqNj3x%2F2.png?alt=media&token=5a2629d9-b788-4a16-8aaa-bc85c8c7ca50"
     ],
     "name": "Sling red bag",
-    "keywords": [
-      "Red",
-      "",
-      "Accessories",
-      "Bag",
-      "Sling",
-      "red",
-      "bag"
-    ],
+    "keywords": ["Red", "", "Accessories", "Bag", "Sling", "red", "bag"],
     "color": "Red",
     "size": "",
     "watchers": 35,
@@ -7199,13 +6995,7 @@
   {
     "color": "Blue",
     "size_description": "",
-    "keywords": [
-      "Blue",
-      "S",
-      "Topwear",
-      "Cotton",
-      "Top"
-    ],
+    "keywords": ["Blue", "S", "Topwear", "Cotton", "Top"],
     "brand": "Adidas",
     "product_condition": "5",
     "description": "Shein crop top.                                   ",
@@ -7532,13 +7322,7 @@
     ],
     "color": "Black",
     "name": "Jacket-Madame",
-    "keywords": [
-      "Black",
-      "M",
-      "Overalls",
-      "-",
-      "Jacket"
-    ],
+    "keywords": ["Black", "M", "Overalls", "-", "Jacket"],
     "product_condition": "5",
     "material": "-",
     "description": "Madame jacket perfect to pair with outfits.        ",

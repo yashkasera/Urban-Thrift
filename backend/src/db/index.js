@@ -10,6 +10,7 @@ mongoose
         await model.init();
       })
     );
+    // require("../util/updateProd");
     require("../routes/agenda");
   })
   .catch((e) => {

@@ -134,7 +134,7 @@ router.post("/", async (req, res) => {
       added_by: req.user._id,
     });
     await product.save();
-    agenda.schedule("in 5 minutes", "prod", { id: product._id });
+    agenda.schedule("in 2 minutes", "prod", { id: product._id });
     return res.status(201).send(product);
   } catch (e) {
     console.log(e);

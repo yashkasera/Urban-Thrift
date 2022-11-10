@@ -1,7 +1,4 @@
 const mongoose = require("mongoose");
-const order_model = require("./Order");
-const product_model = require("./Product");
-const user_model = require("./User");
 
 const bid_schema = new mongoose.Schema(
   {
