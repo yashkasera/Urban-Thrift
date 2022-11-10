@@ -234,6 +234,21 @@ const showBidDialog = (product, isEdit = false) => {
     modalTitle.setAttribute("id", "bidModalLabel");
     modalTitle.innerHTML = isEdit ? 'Edit Bid' : "Create Bid";
     modalHeader.appendChild(modalTitle);
+    let modalCloseButton = document.createElement("button");
+    modalCloseButton.classList.add("btn",'btn-warning');
+    modalCloseButton.setAttribute("type", "button");
+    modalCloseButton.setAttribute("data-dismiss", "modal");
+    modalCloseButton.setAttribute("aria-label", "Close");
+    modalCloseButton.onclick = () => {
+        bidModal.hide()
+        modal.remove();
+        modal.style.display = 'none';
+    }
+    let modalCloseButtonSpan = document.createElement("span");
+    modalCloseButtonSpan.setAttribute("aria-hidden", "true");
+    modalCloseButtonSpan.innerHTML = "&times;";
+    modalCloseButton.appendChild(modalCloseButtonSpan);
+    modalHeader.appendChild(modalCloseButton);
     let modalBody = document.createElement("div");
     modalBody.classList.add("modal-body");
     let modalBodyForm = document.createElement("form");
@@ -291,8 +306,9 @@ const showBidDialog = (product, isEdit = false) => {
             await createBid(product._id, modalBodyFormInput.value);
         }
         modalBodyFormInput.value = "";
-        bidModal.hide();
+        bidModal.remove();
         modal.remove()
+        modal.style.display = 'none';
     }
     modalFooter.appendChild(addToWallet);
     modalFooter.appendChild(modalFooterButton);
@@ -302,7 +318,9 @@ const showBidDialog = (product, isEdit = false) => {
     modalDialog.appendChild(modalContent);
     modal.appendChild(modalDialog);
     document.body.appendChild(modal);
-    let bidModal = new bootstrap.Modal(document.getElementById('bidModal'));
+    let bidModal = new bootstrap.Modal(document.getElementById('bidModal'),{
+        keyboard: false
+    });
     bidModal.show();
 };
 
