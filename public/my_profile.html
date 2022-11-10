@@ -1,26 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyCShltEjBvlNT5uPnam4nXSLuCUyQQPx3w",
-            authDomain: "thrift-it-6292f.firebaseapp.com",
-            databaseURL: "https://thrift-it-6292f.firebaseio.com",
-            projectId: "thrift-it-6292f",
-            storageBucket: "thrift-it-6292f.appspot.com",
-            messagingSenderId: "349474094670",
-            appId: "1:349474094670:web:72e88ee219b10a689a8d1f",
-            measurementId: "G-19WP7K4Y1V"
-        };
-        firebase.initializeApp(firebaseConfig);
-        let db = firebase.firestore();
-        let auth = firebase.auth();</script>
-
     <title>Urban-Thrift | My Profile</title>
     <meta charset="UTF-8">
     <meta name="description" content=" UrbanThrift | My Profile">
@@ -30,7 +11,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css"/>
 </head>
-
 <body>
 <!-- Header section -->
 <header>
@@ -196,32 +176,44 @@
                     <br><br>
                 </div>
             </div>
-            <div class="col-md-6 col-xs-12 col-sm-6">
-                <div class="d-flex flex-column justify-content-around h-100 p-5 card ms-5 bg-gray">
-                    <a href="./my_orders.html" class="link-none">
-                        <div class="card col-3 p-2 text-center w-100">
-                            <h2><i class="fa-solid fa-chart-line"></i></h2>
-                            <div class="container">
-                                <h4 id="count_orders">0 Orders</h4>
+            <div class="col-md-6 col-xs-12 col-sm-6 d-flex justify-content-center flex-column p-5">
+                <div class="d-flex flex-column h-100 justify-content-between">
+                    <div class="px-2 h-100 my-1">
+                        <a onclick="addBalanceDialog()" class="link-none w-100 h-100">
+                            <div class="card col-3 text-center w-100 h-100 d-flex justify-content-center">
+                                <h2 id="wallet">0.00</h2>
+                                <h4 class="text-secondary fw-light">Wallet (in Rs.)</h4>
                             </div>
-                        </div>
-                    </a>
-                    <a href="my_bids.html" class="link-none">
-                        <div class="card col-3 p-2 text-center w-100">
-                            <h2><i class="flaticon-push-pin"></i></h2>
-                            <div class="container">
-                                <h4 id="count_wishlist">0 Wishlist</h4>
+                        </a>
+                    </div>
+                    <div class="d-flex flex-row align-items-stretch h-100 px-2 my-1">
+                        <a href="my_bids.html" class="link-none w-100 me-1 h-100">
+                            <div class="card col-3 text-center w-100 h-100 d-flex justify-content-center">
+                                <h2 id="count_bid">0</h2>
+                                <h4 class="text-secondary fw-light">Bids</h4>
                             </div>
-                        </div>
-                    </a>
-                    <a href="my_watchlist.html" class="link-none">
-                        <div class="card  col-3 p-2 text-center w-100">
-                            <h2><i class="flaticon-push-pin"></i></h2>
-                            <div class="container">
-                                <h4 id="count_cart">0 Cart</h4>
+                        </a>
+                        <a href="./my_orders.html" class="link-none w-100 ms-1 h-100">
+                            <div class="card col-3 text-center w-100 h-100  d-flex justify-content-center">
+                                <h2 id="count_orders">0</h2>
+                                <h4 class="text-secondary fw-light">Orders</h4>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
+                    <div class="d-flex flex-row align-items-stretch h-100 px-2 my-1">
+                        <a href="my_bids.html" class="link-none w-100 me-1 h-100">
+                            <div class="card col-3 text-center w-100  h-100  d-flex justify-content-center">
+                                <h2 id="count_watchlist">0</h2>
+                                <h4 class="text-secondary fw-light">Watchlist</h4>
+                            </div>
+                        </a>
+                        <a href="my_watchlist.html" class="link-none w-100 ms-1 h-100">
+                            <div class="card col-3 text-center w-100 h-100  d-flex justify-content-center">
+                                <h2 id="count_listings">0</h2>
+                                <h4 class="text-secondary fw-light">Listings</h4>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -256,152 +248,13 @@
 </footer>
 <!-- Footer section end -->
 <div id="snackbar"></div>
-<script>
-    let acc = document.getElementsByClassName("accordion");
-    for (let i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            let panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-            }
-        });
-    }
-    let storedData = localStorage.getItem("cart");
-
-    items = JSON.parse(storedData);
-    console.log(items);
-    if (items != null)
-        document.getElementById("count_cart").innerHTML = items.length + " Cart";
-
-    function updateUser() {
-        event.preventDefault();
-        let uid = auth.currentUser.uid;
-        let name = document.getElementById("name").value;
-        let mobile = document.getElementById("mobile").value;
-        let address = document.getElementById("address").value;
-        let city = document.getElementById("city").value;
-        let state = document.getElementById("state").value;
-        let pin = document.getElementById("pin").value;
-        let obj = {address: address, city: city, state: state, pincode: pin};
-        db.collection("users").doc(uid).update({
-            name: name,
-            mobile: mobile,
-            address: obj
-        })
-    }
-
-    function editDetails() {
-        document.getElementById("name").disabled = false;
-        document.getElementById("mobile").disabled = false;
-        document.getElementById("address").disabled = false;
-        document.getElementById("city").disabled = false;
-        document.getElementById("state").disabled = false;
-        document.getElementById("pin").disabled = false;
-        document.getElementById("updateBtn").style.display = "block";
-    }
-
-    let myInput = document.getElementById("pwd1");
-    let letter = document.getElementById("letter");
-    let capital = document.getElementById("capital");
-    let number = document.getElementById("number");
-    let length = document.getElementById("length");
-    myInput.onfocus = function () {
-        document.getElementById("message").style.display = "block";
-    }
-    myInput.onblur = function () {
-        document.getElementById("message").style.display = "none";
-    }
-    let flag = 0;
-    myInput.onkeyup = function () {
-        flag = 0;
-        let lowerCaseLetters = /[a-z]/g;
-        if (myInput.value.match(lowerCaseLetters)) {
-            flag++;
-            letter.classList.remove("invalid");
-            letter.classList.add("valid");
-        } else {
-            letter.classList.remove("valid");
-            letter.classList.add("invalid");
-        }
-        let upperCaseLetters = /[A-Z]/g;
-        if (myInput.value.match(upperCaseLetters)) {
-            flag++;
-            capital.classList.remove("invalid");
-            capital.classList.add("valid");
-        } else {
-            capital.classList.remove("valid");
-            capital.classList.add("invalid");
-        }
-        let numbers = /[0-9]/g;
-        if (myInput.value.match(numbers)) {
-            flag++;
-            number.classList.remove("invalid");
-            number.classList.add("valid");
-        } else {
-            number.classList.remove("valid");
-            number.classList.add("invalid");
-        }
-        if (myInput.value.length >= 8) {
-            flag++;
-            length.classList.remove("invalid");
-            length.classList.add("valid");
-        } else {
-            length.classList.remove("valid");
-            length.classList.add("invalid");
-        }
-    }
-
-    function changePassword() {
-        event.preventDefault();
-        let pwd = document.getElementById("pwd").value;
-        let pwd1 = document.getElementById("pwd1").value;
-        let pwd2 = document.getElementById("pwd2").value;
-        if (flag != 4) {
-            document.getElementById("error1").innerHTML = "*Please choose a strong password";
-            document.getElementById("error1").style.display = "block";
-        } else {
-            if (pwd1 != pwd2) {
-                document.getElementById("error1").innerHTML = "*Passwords do not match";
-                document.getElementById("error1").style.display = "block";
-            } else {
-                let user = firebase.auth().currentUser;
-                let credentials = firebase.auth.EmailAuthProvider.credential(
-                    user.email,
-                    pwd
-                );
-                user.reauthenticateWithCredential(credentials)
-                    .then(function () {
-                        user.updatePassword(pwd1).then(function () {
-                            // Update successful.
-                            alert("Password updated successfully");
-                        }).then(function () {
-                            window.location.reload();
-                        }).catch(function (error) {
-                            document.getElementById("error1").innerHTML = error.message;
-                            document.getElementById("error1").style.display = "block";
-                        });
-                    })
-                    .catch(function (error) {
-                        document.getElementById("error1").innerHTML = "*Incorrect Password";
-                        document.getElementById("error1").style.display = "block";
-                    });
-            }
-        }
-        setTimeout(function () {
-            document.getElementById("error1").style.display = "none";
-        }, 3000);
-    }
-</script>
-
 <!--====== Javascripts & Jquery ======-->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="https://kit.fontawesome.com/978e5c8e46.js" crossorigin="anonymous"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script src="js/main.js"></script>
 <script src="js/auth.js"></script>
+<script src="js/profile.js"></script>
 
 </body>
 

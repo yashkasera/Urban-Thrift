@@ -345,6 +345,21 @@ const addBalanceDialog = () => {
     modalTitle.setAttribute("id", "addBalanceModalLabel");
     modalTitle.innerHTML = "Add Balance";
     modalHeader.appendChild(modalTitle);
+    let modalCloseButton = document.createElement("button");
+    modalCloseButton.classList.add("btn",'btn-warning');
+    modalCloseButton.setAttribute("type", "button");
+    modalCloseButton.setAttribute("data-dismiss", "modal");
+    modalCloseButton.setAttribute("aria-label", "Close");
+    modalCloseButton.onclick = () => {
+        addBalanceModal.hide()
+        modal.remove();
+        modal.style.display = 'none';
+    }
+    let modalCloseButtonSpan = document.createElement("span");
+    modalCloseButtonSpan.setAttribute("aria-hidden", "true");
+    modalCloseButtonSpan.innerHTML = "&times;";
+    modalCloseButton.appendChild(modalCloseButtonSpan);
+    modalHeader.appendChild(modalCloseButton);
     modalContent.appendChild(modalHeader);
     let modalBody = document.createElement("div");
     modalBody.classList.add("modal-body");
@@ -379,6 +394,7 @@ const addBalanceDialog = () => {
         modalBodyFormInput.value = "";
         addBalanceModal.hide();
         modal.remove()
+        modal.style.display = 'none';
     }
     modalFooter.appendChild(modalFooterButton);
     modalContent.appendChild(modalBody);

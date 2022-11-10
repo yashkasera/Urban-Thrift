@@ -6,7 +6,6 @@
         }, 2000);
     }
     const response = await request('/order');
-    console.log(response)
     if (response.status === 200) {
         //create jquerydatatable
         let table = document.getElementById("table_ins");
